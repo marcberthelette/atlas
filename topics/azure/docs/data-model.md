@@ -14,6 +14,7 @@ layers already merged, Terraform status derived) or merge the layers yourself wi
 | `edge_types` | `type`, `out` and `in` wording, `meaning`. Edge `[A, requires, B]` reads "A requires B". |
 | `edge_group_order` | Order of relationship groups on a card. |
 | `cloud_native_scale` | The levels (`native`, `partly`, `not`) with a label and the criteria for each. |
+| `scope_levels` | The levels a service can sit at, top down: `tenant`, `management-group`, `subscription`, `resource-group`, `resource`, each with a label and description. |
 | `cost_scale` | The cost levels (`free`, `free-tier`, `trial`, `partial`, `paid`) with a label and description. |
 | `comparisons` | Groups of services that solve the same problem: `id`, `title`, `question`, `status`, `note`, and `members` (`services`, `audience`, `choose_when`). |
 | `terraform_providers` | Per provider: registry namespace and name, `latest_version`, `changed_at`, `docs_url`. `azapi` is the fallback. |
@@ -27,7 +28,7 @@ layers already merged, Terraform status derived) or merge the layers yourself wi
 |---|---|---|
 | `tracking` | human | Inputs to the check: `learn_urls`, `terraform` (provider, kind `resource`/`data_source`, type), `arm_types`. |
 | `fetched` | pipeline or AI ingestion | Content from Microsoft or the registry: `purpose`, `facts`, `cost`, and `terraform.resources` (`type`, `exists`, `since`), `terraform.arm_types`. |
-| `manual` | human | Overrides. Allowed keys: `purpose`, `facts`, `cost`, `cloud_native` (`level`, `note`), `terraform` (`gaps`, `note`, `status`). |
+| `manual` | human | Overrides. Allowed keys: `purpose`, `facts`, `cost`, `cloud_native` (`level`, `note`), `scope` (`levels`, `status`, `note`, `sources`), `terraform` (`gaps`, `note`, `status`). |
 | `review` | human | `status` `unconfirmed` or `verified`, plus a note. |
 | `freshness` | pipeline | `status`, `changed_at`, and per Learn URL: `http_status`, `ms_date`, `updated_at`, `latest_hash`, `reviewed_hash`. |
 
@@ -43,6 +44,14 @@ The detail panel shows a "Sources" section built from the resolved JSON, with a 
 article's `ms.date`) and `published` (when Learn last published it), and for Terraform either `compared` (provider version, API
 version and date) or the latest provider versions in `terraform.provider_versions`. pricing and free-offer pages from `cost.sources`, and the Terraform Registry pages. `make validate` warns when a service has no
 dated source page.
+
+### Scope
+
+`manual.scope` says at which levels of `scope_levels` a service applies or lives: `levels` (in the order of `scope_levels`), `status`
+(`verified` or `unconfirmed`), a one-line `note` and `sources` (https urls). A service that a resource group contains has `resource-group`
+(the `contains` edge is its source). A container (management group, subscription) names the level it lives under. A tier 0 service applies at several
+levels; the explorer view shows it at the highest one and dim below. It is a judgement checked against Learn, so a level not read on the page is
+`unconfirmed`. The explorer (`views/explorer/`) reads it from the resolved JSON.
 
 ### Cost
 

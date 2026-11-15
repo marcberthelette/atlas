@@ -251,6 +251,16 @@
       "manual": {
         "terraform": {
           "note": "Not compared: this service uses the Microsoft Graph API (azuread provider), not an ARM spec, so the API-versus-provider method does not apply yet."
+        },
+        "scope": {
+          "levels": [
+            "tenant"
+          ],
+          "status": "verified",
+          "note": "The tenant is the top of the tree; every subscription trusts exactly one.",
+          "sources": [
+            "https://learn.microsoft.com/entra/fundamentals/how-subscriptions-associated-directory"
+          ]
         }
       },
       "review": {
@@ -361,6 +371,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed."
+        },
+        "scope": {
+          "levels": [
+            "tenant"
+          ],
+          "status": "verified",
+          "note": "Sit under the tenant and hold subscriptions (contains edges).",
+          "sources": []
         }
       },
       "review": {
@@ -436,6 +454,19 @@
         "terraform": {
           "status": "full",
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.  Not compared against the API spec. azurerm_resource_provider_registration, azurerm_management_lock and the template deployment resources exist; coverage of the rest is unconfirmed."
+        },
+        "scope": {
+          "levels": [
+            "tenant",
+            "management-group",
+            "subscription",
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "Management settings and template deployments apply at management group, subscription and resource group, and templates can also deploy at tenant level.",
+          "sources": [
+            "https://learn.microsoft.com/azure/azure-resource-manager/management/overview"
+          ]
         }
       },
       "review": {
@@ -544,6 +575,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "Gaps mean the API accepts the setting and the azurerm resource docs list no matching argument; the provider source was not checked. Management group placement is a separate resource (azurerm_management_group_subscription_association), so it is not a gap."
+        },
+        "scope": {
+          "levels": [
+            "management-group"
+          ],
+          "status": "verified",
+          "note": "Live under a management group (contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -631,6 +670,14 @@
         "terraform": {
           "status": "full",
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.  Not compared against the API spec (spec path not found by the script). A resource group is name, location, tags and managed-by; unconfirmed."
+        },
+        "scope": {
+          "levels": [
+            "subscription"
+          ],
+          "status": "verified",
+          "note": "Live in a subscription (contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -731,6 +778,14 @@
       "manual": {
         "terraform": {
           "note": "Not compared: this service uses the Microsoft Graph API (azuread provider), not an ARM spec, so the API-versus-provider method does not apply yet."
+        },
+        "scope": {
+          "levels": [
+            "tenant"
+          ],
+          "status": "unconfirmed",
+          "note": "Objects live in a tenant; that edge is not verified yet.",
+          "sources": []
         }
       },
       "review": {
@@ -842,6 +897,19 @@
             "compared_at": "2026-10-24"
           },
           "note": "Role assignments and role definitions compared; every writable property has an azurerm argument."
+        },
+        "scope": {
+          "levels": [
+            "management-group",
+            "subscription",
+            "resource-group",
+            "resource"
+          ],
+          "status": "verified",
+          "note": "A role can be assigned at any of these four scopes; lower levels inherit.",
+          "sources": [
+            "https://learn.microsoft.com/azure/role-based-access-control/scope-overview"
+          ]
         }
       },
       "review": {
@@ -946,6 +1014,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Federated credentials are azurerm_federated_identity_credential."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -1093,6 +1169,14 @@
           },
           "note": "End-user actions (backup, restore, purge, recover) are not configuration and are not counted. Two API-only vault fields have no azurerm argument: createMode (recover a soft-deleted vault, an end-user action) and enableSoftDelete (whether it can still be changed is unconfirmed). Private endpoint connections are configured through the Private Endpoint service.",
           "status": "full"
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -1233,6 +1317,17 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared the pricing plan; contacts, settings and automation are separate azurerm resources."
+        },
+        "scope": {
+          "levels": [
+            "management-group",
+            "subscription"
+          ],
+          "status": "verified",
+          "note": "Enabled per subscription in the Azure portal; management groups connect through the Defender portal.",
+          "sources": [
+            "https://learn.microsoft.com/azure/defender-for-cloud/connect-azure-subscription"
+          ]
         }
       },
       "review": {
@@ -1356,6 +1451,18 @@
             "compared_at": "2026-10-24"
           },
           "note": "Gaps mean the API accepts the setting and the azurerm resource docs list no matching argument; the provider source was not checked. Only the subscription budget resource was compared."
+        },
+        "scope": {
+          "levels": [
+            "management-group",
+            "subscription",
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "Cost Management scopes include subscription, resource group and management group (billing scopes sit above these).",
+          "sources": [
+            "https://learn.microsoft.com/azure/cost-management-billing/costs/understand-work-scopes"
+          ]
         }
       },
       "review": {
@@ -1437,6 +1544,17 @@
             }
           ],
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.  azurerm_advisor_suppression covers suppressions only. Not compared against the API spec."
+        },
+        "scope": {
+          "levels": [
+            "subscription",
+            "resource-group"
+          ],
+          "status": "unconfirmed",
+          "note": "Recommendations cover subscriptions; read access works at subscription, resource group or resource.",
+          "sources": [
+            "https://learn.microsoft.com/azure/advisor/advisor-overview"
+          ]
         }
       },
       "review": {
@@ -1493,6 +1611,18 @@
         "terraform": {
           "status": "none",
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.  No azurerm resource found. Resource Graph is a query service; saved queries via Microsoft.ResourceGraph/queries are unconfirmed."
+        },
+        "scope": {
+          "levels": [
+            "tenant",
+            "management-group",
+            "subscription"
+          ],
+          "status": "unconfirmed",
+          "note": "Queries run over the subscriptions available to the principal; tenant and management group scope was read only for the Power BI connector.",
+          "sources": [
+            "https://learn.microsoft.com/azure/governance/resource-graph/overview"
+          ]
         }
       },
       "review": {
@@ -1632,6 +1762,17 @@
             "compared_at": "2026-10-24"
           },
           "note": "Gaps mean the API accepts the setting and the azurerm resource docs list no matching argument; the provider source was not checked. Compared policy definitions and the subscription-scope assignment; whether the newer settings are generally available is unconfirmed."
+        },
+        "scope": {
+          "levels": [
+            "management-group",
+            "subscription"
+          ],
+          "status": "unconfirmed",
+          "note": "A definition is saved in a management group or a subscription (read). Assignment at resource group level was not read.",
+          "sources": [
+            "https://learn.microsoft.com/azure/governance/policy/concepts/scope"
+          ]
         }
       },
       "review": {
@@ -1756,6 +1897,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "Gaps mean the API accepts the setting and the azurerm resource docs list no matching argument; the provider source was not checked. Resource guard and customer-managed key for the Backup vault are covered by sibling resources (azurerm_data_protection_resource_guard, azurerm_recovery_services_vault_resource_guard_association, azurerm_data_protection_backup_vault_customer_managed_key), so they are not gaps."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -1907,6 +2056,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared azurerm_linux_virtual_machine against the API; the Windows resource and sibling resources (extensions, data disk attachments) were searched for matching arguments only."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -2033,6 +2190,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -2156,6 +2321,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared the Linux scale set resource; the Windows and orchestrated resources were searched for matching arguments only."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -2332,6 +2505,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared azurerm_linux_web_app and the service plan. Hosting-plan and site gaps are combined."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -2466,6 +2647,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared azurerm_linux_function_app. Flex Consumption has its own resource (azurerm_function_app_flex_consumption); the shared app settings gaps are the same as App Service."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -2623,6 +2812,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared the container app and the environment."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -2782,6 +2979,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared the cluster; node pools are azurerm_kubernetes_cluster_node_pool."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -2909,6 +3114,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "Gaps mean the API accepts the setting and the azurerm resource docs list no matching argument; the provider source was not checked. "
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -3020,6 +3233,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared the virtual network; subnets and peerings are separate azurerm resources."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -3130,6 +3351,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -3238,6 +3467,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Rules are a separate resource (azurerm_network_security_rule)."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -3346,6 +3583,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -3467,6 +3712,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Rules, probes and pools are separate azurerm resources."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -3611,6 +3864,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared Application Gateway and the Front Door profile (profile: no gaps found); Front Door routes, rules and origins were not compared."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -3743,6 +4004,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared DNS zones (API 2018-05-01) and Private DNS zones (API 2024-06-01, no gaps); record types are separate azurerm resources."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -3844,6 +4113,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Application security groups are covered by azurerm_private_endpoint_application_security_group_association."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -4018,6 +4295,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Encryption keys, network rules and static website are separate azurerm resources and count as covered."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -4178,6 +4463,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared the server and the database."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -4315,6 +4608,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -4436,6 +4737,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -4580,6 +4889,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.  Five gaps, including geo data replication: closest to partial."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -4697,6 +5014,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared custom topics only; system topics, domains and namespaces were not compared."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -4823,6 +5148,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared action groups only; alert rules, diagnostic settings and data collection rules were not compared."
+        },
+        "scope": {
+          "levels": [
+            "subscription"
+          ],
+          "status": "unconfirmed",
+          "note": "Not read from Learn: data is collected per resource and sent to a workspace; the level is a placeholder.",
+          "sources": []
         }
       },
       "review": {
@@ -4930,6 +5263,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Data export, linked clusters and customer-managed keys are separate azurerm resources."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -5033,6 +5374,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "verified",
+          "note": "A resource group contains it (verified contains edge).",
+          "sources": []
         }
       },
       "review": {
@@ -5190,6 +5539,14 @@
             "compared_at": "2026-10-24"
           },
           "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared Grafana only; the Azure Monitor workspace (Prometheus) was not compared against the API."
+        },
+        "scope": {
+          "levels": [
+            "resource-group"
+          ],
+          "status": "unconfirmed",
+          "note": "Azure Monitor contains it (edge); where its resources live was not read.",
+          "sources": []
         }
       },
       "review": {
@@ -5298,6 +5655,16 @@
         ],
         "terraform": {
           "note": "Not compared: this service uses the Azure DevOps REST API (azuredevops provider), not an ARM spec, so the API-versus-provider method does not apply yet."
+        },
+        "scope": {
+          "levels": [
+            "tenant"
+          ],
+          "status": "verified",
+          "note": "Not an Azure resource: an Azure DevOps organization connects to a Microsoft Entra tenant.",
+          "sources": [
+            "https://learn.microsoft.com/azure/devops/organizations/accounts/connect-organization-to-azure-ad"
+          ]
         }
       },
       "review": {
@@ -6974,6 +7341,33 @@
       "level": "paid",
       "label": "Paid",
       "description": "No free option found. Usage-based services can still cost only cents for a small lab."
+    }
+  ],
+  "scope_levels": [
+    {
+      "id": "tenant",
+      "label": "Tenant",
+      "description": "The Microsoft Entra tenant: the identity boundary above everything else."
+    },
+    {
+      "id": "management-group",
+      "label": "Management group",
+      "description": "A container above subscriptions."
+    },
+    {
+      "id": "subscription",
+      "label": "Subscription",
+      "description": "The billing, quota and access boundary for resources."
+    },
+    {
+      "id": "resource-group",
+      "label": "Resource group",
+      "description": "A container for resources that share a lifecycle."
+    },
+    {
+      "id": "resource",
+      "label": "Resource",
+      "description": "One instance of a service."
     }
   ]
 }

@@ -32,3 +32,12 @@ A search finds a role, a product or an alias (kafka leads to Message broker). It
 metadata like the DevOps loop: `views/lenses/data/lenses.json`, checked by `shared/lenses_check.py` (part of `make validate`), built by
 `shared/build_lenses.py` from `shared/lenses.html` into `dist/lenses/index.html`, with the data embedded in the page. `make lenses-check` also
 fetches every source link. The spec is `views/lenses/docs/spec.md`; the first visual agreement is `docs/mockups/lenses.html` (sample text).
+
+## The Azure explorer (`explorer`)
+
+Where does an Azure service sit? One page, `/explorer/`: four levels (tenant, management group, subscription, resource group), each showing what
+applies there, what stays around from a level above (dim) and, at the resource group, the services that can live in one. Zoom in goes down a level,
+search jumps to the level a service sits at, and every service links to its Azure with Terraform entry. It has no catalogue of its own: it reads
+`dist/azure/services.resolved.json`, where each service has `scope` (levels, status, note, sources; see `topics/azure/docs/data-model.md`).
+Built by `shared/build_explorer.py` from `shared/explorer.html` into `dist/explorer/index.html` after the Azure topic, with a transit twin.
+The spec is `views/explorer/docs/spec.md`.

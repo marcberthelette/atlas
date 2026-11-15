@@ -87,6 +87,33 @@
       "description": "No free option found. Usage-based services can still cost only cents for a small lab."
     }
   ],
+  "scope_levels": [
+    {
+      "id": "tenant",
+      "label": "Tenant",
+      "description": "The Microsoft Entra tenant: the identity boundary above everything else."
+    },
+    {
+      "id": "management-group",
+      "label": "Management group",
+      "description": "A container above subscriptions."
+    },
+    {
+      "id": "subscription",
+      "label": "Subscription",
+      "description": "The billing, quota and access boundary for resources."
+    },
+    {
+      "id": "resource-group",
+      "label": "Resource group",
+      "description": "A container for resources that share a lifecycle."
+    },
+    {
+      "id": "resource",
+      "label": "Resource",
+      "description": "One instance of a service."
+    }
+  ],
   "comparisons": [
     {
       "id": "observability",
@@ -328,6 +355,16 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "tenant"
+        ],
+        "status": "verified",
+        "note": "The tenant is the top of the tree; every subscription trusts exactly one.",
+        "sources": [
+          "https://learn.microsoft.com/entra/fundamentals/how-subscriptions-associated-directory"
+        ]
+      },
       "cost": {
         "level": "free",
         "confirmed": true,
@@ -413,6 +450,14 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "tenant"
+        ],
+        "status": "verified",
+        "note": "Sit under the tenant and hold subscriptions (contains edges).",
+        "sources": []
       },
       "cost": {
         "level": "free",
@@ -506,6 +551,19 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "tenant",
+          "management-group",
+          "subscription",
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "Management settings and template deployments apply at management group, subscription and resource group, and templates can also deploy at tenant level.",
+        "sources": [
+          "https://learn.microsoft.com/azure/azure-resource-manager/management/overview"
+        ]
+      },
       "cost": {
         "level": "free",
         "confirmed": true,
@@ -576,6 +634,14 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "management-group"
+        ],
+        "status": "verified",
+        "note": "Live under a management group (contains edge).",
+        "sources": []
       },
       "cost": {
         "level": "free",
@@ -678,6 +744,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "subscription"
+        ],
+        "status": "verified",
+        "note": "Live in a subscription (contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "free",
         "confirmed": false,
@@ -752,6 +826,14 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "tenant"
+        ],
+        "status": "unconfirmed",
+        "note": "Objects live in a tenant; that edge is not verified yet.",
+        "sources": []
       },
       "cost": {
         "level": "free-tier",
@@ -849,6 +931,19 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "management-group",
+          "subscription",
+          "resource-group",
+          "resource"
+        ],
+        "status": "verified",
+        "note": "A role can be assigned at any of these four scopes; lower levels inherit.",
+        "sources": [
+          "https://learn.microsoft.com/azure/role-based-access-control/scope-overview"
+        ]
       },
       "cost": {
         "level": "free",
@@ -951,6 +1046,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "free",
         "confirmed": true,
@@ -1047,6 +1150,14 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
       },
       "cost": {
         "level": "paid",
@@ -1186,6 +1297,17 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "management-group",
+          "subscription"
+        ],
+        "status": "verified",
+        "note": "Enabled per subscription in the Azure portal; management groups connect through the Defender portal.",
+        "sources": [
+          "https://learn.microsoft.com/azure/defender-for-cloud/connect-azure-subscription"
+        ]
+      },
       "cost": {
         "level": "free-tier",
         "confirmed": true,
@@ -1298,6 +1420,18 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "management-group",
+          "subscription",
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "Cost Management scopes include subscription, resource group and management group (billing scopes sit above these).",
+        "sources": [
+          "https://learn.microsoft.com/azure/cost-management-billing/costs/understand-work-scopes"
+        ]
+      },
       "cost": {
         "level": "free",
         "confirmed": true,
@@ -1403,6 +1537,17 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "subscription",
+          "resource-group"
+        ],
+        "status": "unconfirmed",
+        "note": "Recommendations cover subscriptions; read access works at subscription, resource group or resource.",
+        "sources": [
+          "https://learn.microsoft.com/azure/advisor/advisor-overview"
+        ]
+      },
       "cost": {
         "level": "free",
         "confirmed": true,
@@ -1485,6 +1630,18 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "tenant",
+          "management-group",
+          "subscription"
+        ],
+        "status": "unconfirmed",
+        "note": "Queries run over the subscriptions available to the principal; tenant and management group scope was read only for the Power BI connector.",
+        "sources": [
+          "https://learn.microsoft.com/azure/governance/resource-graph/overview"
+        ]
+      },
       "cost": {
         "level": "free",
         "confirmed": false,
@@ -1538,6 +1695,17 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "management-group",
+          "subscription"
+        ],
+        "status": "unconfirmed",
+        "note": "A definition is saved in a management group or a subscription (read). Assignment at resource group level was not read.",
+        "sources": [
+          "https://learn.microsoft.com/azure/governance/policy/concepts/scope"
+        ]
       },
       "cost": {
         "level": "free",
@@ -1662,6 +1830,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "paid",
         "confirmed": false,
@@ -1782,6 +1958,14 @@
       "cloud_native": {
         "level": "not",
         "note": "You manage the operating system and instances yourself."
+      },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
       },
       "cost": {
         "level": "trial",
@@ -1920,6 +2104,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "paid",
         "confirmed": false,
@@ -2040,6 +2232,14 @@
         "level": "not",
         "note": "Groups of VMs: you still manage the operating system and instances, even though they scale automatically."
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "partial",
         "confirmed": true,
@@ -2150,6 +2350,14 @@
       "cloud_native": {
         "level": "partly",
         "note": "Managed platform for web apps that runs classic and containerised apps; no servers to manage but not built around containers or events."
+      },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
       },
       "cost": {
         "level": "free-tier",
@@ -2318,6 +2526,14 @@
         "level": "native",
         "note": "Serverless and event-driven: no servers to manage, triggers and bindings, scales with events."
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "free-tier",
         "confirmed": true,
@@ -2438,6 +2654,14 @@
       "cloud_native": {
         "level": "native",
         "note": "Serverless containers with KEDA autoscaling, Dapr and scale to zero."
+      },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
       },
       "cost": {
         "level": "free-tier",
@@ -2581,6 +2805,14 @@
       "cloud_native": {
         "level": "native",
         "note": "Managed, CNCF-certified Kubernetes for containerised microservices."
+      },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
       },
       "cost": {
         "level": "partial",
@@ -2736,6 +2968,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "trial",
         "confirmed": true,
@@ -2840,6 +3080,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "free",
         "confirmed": true,
@@ -2934,6 +3182,14 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
       },
       "cost": {
         "level": "free",
@@ -3040,6 +3296,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "free",
         "confirmed": false,
@@ -3140,6 +3404,14 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
       },
       "cost": {
         "level": "paid",
@@ -3243,6 +3515,14 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
       },
       "cost": {
         "level": "paid",
@@ -3359,6 +3639,14 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
       },
       "cost": {
         "level": "paid",
@@ -3491,6 +3779,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "paid",
         "confirmed": false,
@@ -3611,6 +3907,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "paid",
         "confirmed": false,
@@ -3701,6 +4005,14 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
       },
       "cost": {
         "level": "paid",
@@ -3865,6 +4177,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "free-tier",
         "confirmed": true,
@@ -4012,6 +4332,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "trial",
         "confirmed": true,
@@ -4132,6 +4460,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "free-tier",
         "confirmed": true,
@@ -4248,6 +4584,14 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
       },
       "cost": {
         "level": "paid",
@@ -4376,6 +4720,14 @@
         "level": "unrated",
         "note": ""
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "free-tier",
         "confirmed": false,
@@ -4484,6 +4836,14 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "subscription"
+        ],
+        "status": "unconfirmed",
+        "note": "Not read from Learn: data is collected per resource and sent to a workspace; the level is a placeholder.",
+        "sources": []
       },
       "cost": {
         "level": "free-tier",
@@ -4607,6 +4967,14 @@
         "level": "partly",
         "note": "Managed log store and KQL query tool that serves any kind of workload."
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "free-tier",
         "confirmed": false,
@@ -4703,6 +5071,14 @@
         "level": "partly",
         "note": "OpenTelemetry-based APM that works for classic and cloud-native apps alike."
       },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "verified",
+        "note": "A resource group contains it (verified contains edge).",
+        "sources": []
+      },
       "cost": {
         "level": "free-tier",
         "confirmed": false,
@@ -4794,6 +5170,14 @@
       "cloud_native": {
         "level": "native",
         "note": "Managed versions of the Prometheus and Grafana open-source projects, aimed at Kubernetes metrics."
+      },
+      "scope": {
+        "levels": [
+          "resource-group"
+        ],
+        "status": "unconfirmed",
+        "note": "Azure Monitor contains it (edge); where its resources live was not read.",
+        "sources": []
       },
       "cost": {
         "level": "paid",
@@ -4940,6 +5324,16 @@
       "cloud_native": {
         "level": "unrated",
         "note": ""
+      },
+      "scope": {
+        "levels": [
+          "tenant"
+        ],
+        "status": "verified",
+        "note": "Not an Azure resource: an Azure DevOps organization connects to a Microsoft Entra tenant.",
+        "sources": [
+          "https://learn.microsoft.com/azure/devops/organizations/accounts/connect-organization-to-azure-ad"
+        ]
       },
       "cost": {
         "level": "free-tier",

@@ -260,15 +260,47 @@ h1{font:900 clamp(2.6rem,9vw,4.6rem)/.98 var(--g);letter-spacing:-.04em;color:va
 """
 
 
-def lenses(page):
-    """The transit twin of the Lenses page, from its template once the data is filled in. The same script draws it: only the look differs."""
+def skin(page, css, view):
+    """The transit twin of a view page that follows the Lenses variable names (shared/lenses.html), once its data is filled in."""
     old = re.search(r":root\{--bg:.*?\n@media\(prefers-color-scheme:dark\)\{:root\{.*?\}\}\n", page, re.S)
-    assert old, "shared/lenses.html: the variable blocks changed"
+    assert old, f"shared/{view}.html: the variable blocks changed"
     page = page.replace(old.group(0), "/*__TRANSIT_VARS__*/\n" + LENSES_MAP + "\n")
-    for marker, new in (("<body>", '<body data-fam="views">'), ("</style></head>", LENSES_CSS + "</style></head>")):
-        assert page.count(marker) == 1, f"shared/lenses.html needs exactly one {marker}"
+    for marker, new in (("<body>", '<body data-fam="views">'), ("</style></head>", css + "</style></head>")):
+        assert page.count(marker) == 1, f"shared/{view}.html needs exactly one {marker}"
         page = page.replace(marker, new)
-    return fill(page, "lenses/index.html", "lenses", "../fonts/")
+    return fill(page, f"{view}/index.html", view, "../fonts/")
+
+
+def lenses(page):
+    """The transit twin of the Lenses page. The same script draws it: only the look differs."""
+    return skin(page, LENSES_CSS, "lenses")
+
+
+EXPLORER_CSS = """
+body{font:500 1.0625rem/1.6 var(--g)}
+main{max-width:1180px}
+.atlas.two{padding-inline:max(1rem,calc(50vw - 590px))}
+h1{font:900 clamp(2.6rem,9vw,4.6rem)/.98 var(--g);letter-spacing:-.04em;color:var(--fg)}
+.sub{font-size:1.1rem}
+.find input{border:3px solid var(--fg);border-radius:999px;padding:.5rem 1.2rem;font-weight:700;background:var(--card)}
+.find ul{border:3px solid var(--fg);border-radius:14px}
+.steps button{font-weight:900;border:3px solid var(--fg);color:var(--fg)}
+.steps button[aria-current=step]{background:var(--fg);color:var(--bg)}
+.band{border:3px solid var(--fg);border-radius:14px}.band.cur{border-color:var(--fam);border-width:4px}
+.band.cur h2{font:900 1.7rem var(--g);color:var(--fg)}.band h2{font:900 1.15rem var(--g)}
+.kick,.band h3,.tag{font:900 .8rem var(--g)}
+.svc{border:3px solid var(--fg);border-radius:12px}.svc.res{border:3px solid var(--fam)}.svc b{font-weight:900}
+.pill{color:var(--fg);font-weight:700}
+.grp{border:3px solid var(--fg);border-radius:12px}
+.band p a,.foot a{text-decoration:underline;text-underline-offset:.2em}
+.lg-res{border-color:var(--fam)}.lg-here{border:3px solid var(--fg)}
+.go{border:3px solid var(--fg);border-radius:999px;font-weight:900}.go:hover{background:var(--fg);color:var(--bg)}
+"""
+
+
+def explorer(page):
+    """The transit twin of the Azure explorer page."""
+    return skin(page, EXPLORER_CSS, "explorer")
 
 
 # Dev stages blue, Ops stages red, except Plan orange, Test violet, Release and Deploy green.
