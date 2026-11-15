@@ -47,6 +47,7 @@ resources exist, and commits the result. Learn text is never committed (`data/sn
 - Every one of the 42 services has `review.status` unconfirmed: the content was imported from the first hand-drafted page and has not been
   verified against Learn. Of the 173 edges, 92 are verified and 81 unconfirmed (origin `learn` or `legacy-import`).
 - Terraform status: 37 full, 1 partial, 1 none, 3 unset. `full` is a human judgement; the pipeline can only prove a resource exists.
+- Scope (`manual.scope`, added for `views/explorer/`): 42 services have levels; 6 are `unconfirmed` (Entra ID, Azure Policy, Advisor, Resource Graph, Azure Monitor, Managed Prometheus and Grafana). Azure Monitor's level is a placeholder.
 - Cost claims are set `confirmed` only when read on the source page. Free offers change often, so nothing is added from memory.
 - This topic does not use the shared page, so the About window's details switch does not apply, and the Atlas page layout changes (details hidden
   by default, picker tabs) are not available here. Bringing Azure onto the shared page is not scheduled.
@@ -61,6 +62,7 @@ resources exist, and commits the result. Learn text is never committed (`data/sn
   stub.
 - Tiers 0 and 1 only. Reason unconfirmed beyond "scope for now".
 - DevOps loop stages: deploy, operate, monitor. A judgement made for the DevOps loop view (`docs/views.md`), not a statement from a source.
+- Scope levels: a `manual.scope` on each service, in `scope_levels` order, so a view can place a service in the tree. Reason: the explorer needs it (`views/explorer/docs/spec.md`); a judgement, so a level not read on Learn stays `unconfirmed`.
 
 ## Updating
 

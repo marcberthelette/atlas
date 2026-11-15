@@ -40,7 +40,7 @@ The page shows the Azure data version and the date of the check, like every othe
 
 ## Known gaps
 
-- The mockups guess which level each ambient service belongs to. Nothing is verified against Learn yet.
+- Scope levels are in the Azure data: 36 verified, 6 unconfirmed (Entra ID, Azure Policy, Advisor, Resource Graph, Azure Monitor, Managed Prometheus and Grafana). The mockups predate them.
 - Azure DevOps and Log Analytics do not attach to the tree the way a subscription does; how to show it is open.
 - The example subscriptions and resource groups in the mockups are placeholders.
 
@@ -48,7 +48,7 @@ The page shows the Azure data version and the date of the check, like every othe
 
 - Layers layout (C): the context never leaves the screen. Reason: the owner's choice after seeing three layouts.
 - Link to Atlas, no duplicated facts. Reason: root `CLAUDE.md` ("centralise, don't copy").
-- Where the level lives: a `scope` list on each Azure service (tenant, management group, subscription, resource group), checked by
+- Where the level lives: `manual.scope` on each Azure service (`levels` from `scope_levels`, `status`, `note`, `sources`; built, see `topics/azure/docs/data-model.md`), checked by
   `make azure-validate`. Rejected for now: a separate catalogue in `views/explorer/data/`.
 - Location: `views/explorer/`, like `views/lenses/`, with its own build and a link in the banner.
 

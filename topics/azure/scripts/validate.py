@@ -8,7 +8,7 @@ FRESHNESS = {"unreviewed", "current", "stale", "error"}
 REVIEW = {"unconfirmed", "verified"}
 EDGE_STATUS = {"unconfirmed", "verified"}
 TF_KINDS = set(model.TF_KINDS)
-MANUAL_KEYS = {"purpose", "facts", "cloud_native", "terraform", "cost"}
+MANUAL_KEYS = {"purpose", "facts", "cloud_native", "terraform", "cost", "scope"}
 
 
 def main():
@@ -69,6 +69,23 @@ def main():
             bad.append(f"cost needs a level from the scale, a note, checked_at and confirmed: {s['id']}")
         elif not all(u.startswith("https://") for u in c.get("sources", [])):
             bad.append(f"cost sources must be https urls: {s['id']}")
+    level_ids = [l["id"] for l in data["scope_levels"]]
+    in_rg = {e["to"] for e in data["edges"] if e["from"] == "resource-groups" and e["type"] == "contains" and e["status"] == "verified"}
+    for s in data["services"]:
+        sc = s["manual"].get("scope")
+        if not sc or not sc.get("levels") or not sc.get("note") or sc.get("status") not in REVIEW:
+            bad.append(f"scope needs levels, a note and a status: {s['id']}")
+            continue
+        if any(l not in level_ids for l in sc["levels"]):
+            bad.append(f"scope level not in scope_levels: {s['id']}")
+        if sc["levels"] != sorted(sc["levels"], key=level_ids.index):
+            bad.append(f"scope levels must follow the order of scope_levels: {s['id']}")
+        if not all(u.startswith("https://") for u in sc.get("sources", [])):
+            bad.append(f"scope sources must be https urls: {s['id']}")
+        if sc["status"] == "verified" and not sc.get("sources") and "edge" not in sc["note"]:
+            bad.append(f"verified scope needs a source page or an edge: {s['id']}")
+        if s["id"] in in_rg and "resource-group" not in sc["levels"]:
+            bad.append(f"a resource group contains it, so scope needs resource-group: {s['id']}")
     service_ids = {s["id"] for s in data["services"]}
     for c in data["comparisons"]:
         for m in c["members"]:
