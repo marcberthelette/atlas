@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>__TITLE__ - __NAME__</title>
+<style>
+:root{--bg:#fff;--fg:#111;--mut:#555;--acc:#1a3c5e;--accfg:#fff;--rule:#d5dde5;--card:#f6f8fa;--lane:#f1f4f7;--amb:#5b3fa0}
+@media(prefers-color-scheme:dark){:root{--bg:#14181d;--fg:#e8ecef;--mut:#9aa6b2;--acc:#7fb2e5;--accfg:#14181d;--rule:#2b333b;--card:#1c2229;--lane:#181e24;--amb:#b9a2ff}}
+*{box-sizing:border-box}
+body{font:16px/1.45 system-ui,sans-serif;background:var(--bg);color:var(--fg);margin:0}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+main{max-width:1100px;margin:0 auto;padding:16px}
+h1{font-size:clamp(1.5rem,3.5vw,1.9rem);line-height:1.15;letter-spacing:-.01em;text-wrap:balance;color:var(--acc);margin:0}
+.sub{color:var(--mut);margin:2px 0 12px;font-size:.95rem;max-width:70ch}
+.head{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:flex-start;justify-content:space-between}
+.find{position:relative;min-width:min(320px,100%);margin-top:2px}
+.find input{width:100%;border:1px solid var(--rule);border-radius:8px;padding:8px 12px;background:var(--bg);min-height:40px}
+.find ul{position:absolute;z-index:5;right:0;width:min(420px,92vw);top:100%;margin:4px 0 0;padding:4px;list-style:none;background:var(--bg);border:1px solid var(--rule);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.find li button{display:flex;flex-direction:column;width:100%;text-align:left;border:0;background:none;padding:8px 10px;border-radius:6px;cursor:pointer}
+.find li button:hover,.find li button:focus-visible{background:var(--card)}
+.find li small{color:var(--mut)}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px;padding:0;list-style:none;align-items:center}
+.steps li+li::before{content:"/";color:var(--mut);margin-right:6px}
+.steps li{display:flex;align-items:center;gap:6px}
+.steps button{border:1px solid transparent;background:none;border-radius:999px;padding:6px 14px;cursor:pointer;min-height:40px;color:var(--mut)}
+.steps button:hover{color:var(--fg);border-color:var(--rule)}
+.steps button[aria-current=step]{background:var(--acc);color:var(--accfg);font-weight:600}
+.band{border:1px solid var(--rule);border-radius:14px;background:var(--lane);padding:14px 16px;margin:0 0 6px}
+.band.cur{border:2px solid var(--acc);background:var(--card);padding:16px 18px}
+.band h2{margin:0;font-size:1.05rem}
+.band.cur h2{font-size:1.35rem;color:var(--acc)}
+.band h2:focus{outline:none}
+.kick{display:block;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);margin-bottom:2px}
+.band p{margin:4px 0 0;color:var(--mut);font-size:.92rem;max-width:80ch}
+.band h3{margin:14px 0 6px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mut)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0;padding:0;list-style:none}
+.pill{border:1px dashed var(--rule);border-radius:999px;padding:3px 12px;font-size:.85rem;color:var(--mut);background:var(--bg);text-decoration:none;display:inline-block}
+a.pill:hover{border-color:var(--acc);color:var(--fg)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:0;padding:0;list-style:none}
+.svc{display:flex;flex-direction:column;gap:2px;height:100%;border:1.5px dashed var(--amb);border-radius:10px;background:var(--bg);padding:9px 12px;text-decoration:none;color:inherit}
+.svc:hover{border-style:solid}
+.svc b{font-size:.95rem}
+.svc span{font-size:.85rem;color:var(--mut);line-height:1.35}
+.svc small{font-size:.78rem;color:var(--mut)}
+.svc.res{border:1.5px solid var(--acc);border-radius:9px;padding:6px 10px;flex-direction:row;align-items:center;gap:8px;height:auto}
+.svc.res b{font-weight:500}
+.svc.sel{outline:3px solid var(--fg);outline-offset:2px;background:var(--card)}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--amb)}
+.un{color:var(--mut);font-style:italic}
+.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.grp{border:1px solid var(--rule);border-radius:10px;background:var(--bg);padding:10px 12px}
+.grp h3{margin:0 0 6px}
+.go{margin-top:12px;display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--acc);background:var(--bg);border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:600;min-height:44px}
+.go:hover{background:var(--acc);color:var(--accfg)}
+.up{margin-top:8px;border:0;background:none;color:var(--acc);cursor:pointer;padding:6px 0;text-decoration:underline}
+.arrow{color:var(--mut);margin:0 0 6px 18px;font-size:.85rem}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:14px 0 0;font-size:.85rem;color:var(--mut)}
+.legend i{display:inline-block;width:22px;height:12px;border-radius:4px;vertical-align:middle;margin-right:6px}
+.foot{color:var(--mut);font-size:.85rem;margin:14px 0 0;max-width:80ch}
+.foot a{color:var(--acc)}
+.sr{position:absolute;left:-9999px}
+/*__BANNER_CSS__*/
+</style></head><body>
+<!--__BANNER__-->
+<main>
+<p id="live" class="sr" role="status"></p>
+<div class="head"><div><h1>__TITLE__</h1><p class="sub">Where does an Azure service sit? Start at the tenant and go down. At every level you see what applies there and what stays around from above. To see how a service connects, open its entry.</p></div>
+  <div class="find"><label class="sr" for="q">Find an Azure service</label><input id="q" type="search" placeholder="Where is it? Try Key Vault, Policy" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="res"><ul id="res" hidden></ul></div></div>
+<ol class="steps" id="steps" aria-label="Level"></ol>
+<div id="view"></div>
+<div class="legend"><span><i style="border:1.5px solid var(--acc)"></i>Service that lives in a resource group</span><span><i style="border:1.5px dashed var(--amb)"></i>Service that applies at this level</span><span><i style="border:1px dashed var(--rule)"></i>Applies from a level above</span></div>
+<p class="foot" id="foot"></p>
+</main>
+<!--__FOOTER__-->
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent);
+const AZ='../azure/index.html#';
+const NAV=['tenant','management-group','subscription','resource-group'];
+const IDX={};D.levels.forEach((l,i)=>IDX[l.id]=i);
+const LV=Object.fromEntries(D.levels.map(l=>[l.id,l]));
+const S=Object.fromEntries(D.services.map(s=>[s.id,s]));
+const STRUCT=new Set(Object.values(D.structure));
+const hi=s=>IDX[s.scope.levels[0]];
+const resident=s=>s.scope.levels.length===1&&s.scope.levels[0]==='resource-group';
+const ambient=lv=>D.services.filter(s=>!STRUCT.has(s.id)&&!resident(s)&&hi(s)<=lv);
+const h=(tag,a,...kids)=>{const e=document.createElement(tag);for(const k in a||{}){if(k==='class')e.className=a[k];else e.setAttribute(k,a[k])}kids.flat().forEach(c=>e.append(c));return e};
+const unc=s=>s.scope.status!=='verified';
+let cur='tenant',sel=null;
+
+function svcCard(s,mode){
+  const a=h('a',{class:'svc'+(mode==='res'?' res':''),href:AZ+s.id,'data-id':s.id},
+    h('b',null,s.name),
+    mode==='res'?[]:h('span',null,s.purpose),
+    unc(s)?h('small',{class:'un'},'level unconfirmed'+(mode==='res'?'':': '+s.scope.note)):[]);
+  if(s.id===sel)a.classList.add('sel');
+  return a;
+}
+function band(kind,label,name,desc){
+  return h('section',{class:'band'+(kind==='cur'?' cur':''),'aria-labelledby':'b-'+kind},
+    h('span',{class:'kick'},label),h('h2',{id:'b-'+kind,tabindex:'-1'},name),desc?h('p',null,desc):[]);
+}
+function render(){
+  const lv=NAV.indexOf(cur),L=LV[cur],box=document.getElementById('view');
+  box.replaceChildren();
+  // level above
+  if(lv>0){
+    const up=NAV[lv-1],b=band('up','Level above',LV[up].label,LV[up].description);
+    const news=ambient(lv-1).filter(s=>hi(s)===lv-1);
+    if(news.length)b.append(h('ul',{class:'row'},news.map(s=>h('li',null,h('a',{class:'pill',href:AZ+s.id},s.name)))));
+    b.append(h('button',{class:'up',type:'button','data-go':up},'Go up to '+LV[up].label.toLowerCase()));
+    box.append(b,h('div',{class:'arrow','aria-hidden':'true'},'contains'));
+  }
+  // current level
+  const c=band('cur','You are in',L.label,L.description),own=S[D.structure[cur]];
+  if(own)c.append(h('p',null,'Atlas entry: ',h('a',{href:AZ+own.id},own.name)));
+  if(lv<3){
+    const nx=NAV[lv+1],ns=S[D.structure[nx]];
+    c.append(h('h3',null,'Contains'),h('p',null,ns.name+': '+ns.purpose),h('button',{class:'go',type:'button','data-go':nx},'Zoom in to '+LV[nx].label.toLowerCase()+' ',h('span',{'aria-hidden':'true'},'→')));
+  }
+  const amb=ambient(lv),here=amb.filter(s=>s.scope.levels.includes(cur)),above=amb.filter(s=>!s.scope.levels.includes(cur));
+  if(here.length)c.append(h('h3',null,'Applies at this level'),h('ul',{class:'cards'},here.map(s=>h('li',null,svcCard(s)))));
+  else c.append(h('h3',null,'Applies at this level'),h('p',null,'Nothing new starts here.'));
+  if(above.length)c.append(h('h3',null,'Around from a level above'),h('ul',{class:'row'},above.map(s=>h('li',null,h('a',{class:'pill',href:AZ+s.id},s.name)))));
+  if(cur==='resource-group'){
+    const res=D.services.filter(resident),cats=D.categories.filter(k=>res.some(s=>s.category===k));
+    c.append(h('h3',null,'Services that can live in a resource group ('+res.length+')'),
+      h('div',{class:'groups'},cats.map(k=>h('div',{class:'grp'},h('h3',null,k),h('ul',{class:'row'},res.filter(s=>s.category===k).map(s=>h('li',null,svcCard(s,'res'))))))));
+  }
+  box.append(c);
+  // level below
+  if(lv<3){
+    const nx=NAV[lv+1],b=band('dn','Level below',LV[nx].label,LV[nx].description);
+    if(nx==='resource-group'){const n=D.services.filter(resident).length;b.append(h('p',null,n+' services can live here, grouped by what they are.'))}
+    else{const news=ambient(lv+1).filter(s=>hi(s)===lv+1);if(news.length)b.append(h('p',null,'Starts here: '+news.map(s=>s.name).join(', ')+'.'))}
+    box.append(h('div',{class:'arrow','aria-hidden':'true'},'contains'),b);
+  }
+  document.getElementById('steps').replaceChildren(...NAV.map(id=>h('li',null,h('button',Object.assign({type:'button','data-go':id},id===cur?{'aria-current':'step'}:{}),LV[id].label))));
+  const hit=box.querySelector('.svc.sel');if(hit)hit.scrollIntoView({block:'center'});
+}
+function go(level,id,focus){
+  cur=level;sel=id||null;
+  const hash='#'+level+(id?'/'+id:'');if(location.hash!==hash)history.pushState(null,'',hash);
+  render();
+  document.getElementById('live').textContent=(id&&S[id]?S[id].name+' is at ':'')+'Level: '+LV[level].label;
+  if(focus!==false&&!id){const t=document.getElementById('b-cur');if(t)t.focus({preventScroll:true})}
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-go]');
+  if(b){go(b.dataset.go);window.scrollTo({top:0})}
+});
+function fromHash(){
+  const [l,id]=location.hash.slice(1).split('/');
+  cur=NAV.includes(l)?l:'tenant';sel=id&&S[id]?id:null;render();
+}
+addEventListener('hashchange',fromHash);
+// search: where does a service sit?
+function target(s){
+  for(const l of NAV)if(D.structure[l]===s.id)return NAV[Math.max(0,NAV.indexOf(l)-1)];
+  return resident(s)?'resource-group':NAV[Math.min(3,hi(s))];
+}
+const q=document.getElementById('q'),res=document.getElementById('res');
+function find(){
+  const t=q.value.trim().toLowerCase();res.replaceChildren();
+  const hits=t?D.services.filter(s=>(s.name+' '+s.id+' '+s.purpose).toLowerCase().includes(t)).slice(0,8):[];
+  res.hidden=!hits.length;q.setAttribute('aria-expanded',String(!!hits.length));
+  hits.forEach(s=>res.append(h('li',null,h('button',{type:'button','data-id':s.id},h('span',null,s.name),h('small',null,s.scope.levels.map(l=>LV[l].label).join(', ')+(unc(s)?' (unconfirmed)':''))))));
+}
+q.addEventListener('input',find);
+q.addEventListener('keydown',e=>{if(e.key==='Escape'){res.hidden=true;q.setAttribute('aria-expanded','false')}});
+res.addEventListener('click',e=>{
+  const b=e.target.closest('button[data-id]');if(!b)return;
+  const s=S[b.dataset.id];res.hidden=true;q.value='';q.setAttribute('aria-expanded','false');go(target(s),s.id,false);
+});
+const n=D.services.filter(unc).length;
+document.getElementById('foot').append('Levels are read from the Azure with Terraform data and checked against Microsoft Learn; '+n+' of '+D.services.length+' services are marked unconfirmed. Azure data last changed '+D.checked+'. ',h('a',{href:'../azure/index.html'},'Azure with Terraform'),' holds the facts, relationships and sources.');
+fromHash();
+</script>
+</body></html>

@@ -18,6 +18,7 @@ build:  ## Build every topic and the landing page into dist/
 	@for t in $(TOPICS); do $(MAKE) --no-print-directory -C topics/$$t build || exit 1; done
 	$(PY) shared/build_views.py
 	$(PY) shared/build_lenses.py
+	$(PY) shared/build_explorer.py
 	$(PY) shared/build_site.py
 
 serve: build  ## Build and serve dist/ on http://localhost:8000

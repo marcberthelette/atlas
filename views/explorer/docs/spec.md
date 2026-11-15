@@ -1,7 +1,7 @@
 # Azure explorer: spec
 
 Status: approved by the owner on 2026-11-14 (both open decisions taken as proposed). Mockups: https://claude.ai/artifact/DgPdGpGVSGzfSKEyRSCDVZ (direction C, Layers, chosen by the owner; A and B are not built).
-Nothing is built yet. Format: `docs/topic-spec.md`, adapted for a view that reads another topic's data.
+Built 2026-11-14 (`shared/explorer.html`, `shared/build_explorer.py`); the page differs from the mockup as described under Layout. Format: `docs/topic-spec.md`, adapted for a view that reads another topic's data.
 
 ## Purpose and audience
 
@@ -24,6 +24,10 @@ One page, `/explorer/`, built from `dist/azure/services.resolved.json` (the stab
 ambient services from higher levels stay visible as dim pills. Click a container to go one level down; the breadcrumb goes back up. Deep links by hash.
 Must work from `file://` and with the keyboard, in light and dark.
 
+Differences from the mockup: the reference view has no named subscriptions or resource groups, so each level is a stop (tenant, management group,
+subscription, resource group) and the container is the Azure service that stands for the next level. A service shows at its highest level and as a
+dim pill below it. Built in both looks (classic and transit) like every view.
+
 ## Sources
 
 The Azure topic's data, which carries the Learn pages and versions. A level (`scope`) is a judgement checked against Learn, not copied from it.
@@ -33,10 +37,10 @@ The page shows the Azure data version and the date of the check, like every othe
 
 | Item | Status | Notes |
 |---|---|---|
-| `tenant` | planned | tier 0 services around the tenant |
-| `subscription` | planned | RBAC, Policy, Cost Management, Defender for Cloud and others at this level |
-| `resource-group` | planned | the 27 services the Azure data says a resource group contains, by category |
-| `service` | planned | links to the Atlas entry; relationships stay in Atlas |
+| `tenant` | done | the tenant and the services that start there (Entra ID, Azure DevOps, Resource Manager, Resource Graph) |
+| `subscription` | done | one stop for the management group and one for the subscription, with what starts at each |
+| `resource-group` | done | the 27 services the Azure data says a resource group contains, by category |
+| `service` | done | every service links to its Atlas entry (`../azure/index.html#<id>`); relationships stay in Atlas. Search jumps to the level a service sits at |
 
 ## Known gaps
 
