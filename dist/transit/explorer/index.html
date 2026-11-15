@@ -50,7 +50,7 @@ h1{font-size:clamp(1.5rem,3.5vw,1.9rem);line-height:1.15;letter-spacing:-.01em;t
 .row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0;padding:0;list-style:none}
 .pill{border:1px dashed var(--rule);border-radius:999px;padding:3px 12px;font-size:.85rem;color:var(--mut);background:var(--bg);text-decoration:none;display:inline-block}
 a.pill:hover{border-color:var(--acc);color:var(--fg)}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:0;padding:0;list-style:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:10px;margin:0;padding:0;list-style:none}
 .svc{display:flex;flex-direction:column;gap:2px;height:100%;border:1.5px dashed var(--amb);border-radius:10px;background:var(--bg);padding:9px 12px;text-decoration:none;color:inherit}
 .svc:hover{border-style:solid}
 .svc b{font-size:.95rem}
@@ -61,7 +61,7 @@ a.pill:hover{border-color:var(--acc);color:var(--fg)}
 .svc.sel{outline:3px solid var(--fg);outline-offset:2px;background:var(--card)}
 .tag{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--amb)}
 .un{color:var(--mut);font-style:italic}
-.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:12px}
 .grp{border:1px solid var(--rule);border-radius:10px;background:var(--bg);padding:10px 12px}
 .grp h3{margin:0 0 6px}
 .go{margin-top:12px;display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--acc);background:var(--bg);border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:600;min-height:44px}
@@ -146,7 +146,7 @@ paint();addEventListener('resize',h);show(keep)})();</script></nav>
 <main>
 <p id="live" class="sr" role="status"></p>
 <div class="head"><div><h1>Azure explorer</h1><p class="sub">Where does an Azure service sit? Start at the tenant and go down. At every level you see what applies there and what stays around from above. To see how a service connects, open its entry.</p></div>
-  <div class="find"><label class="sr" for="q">Find an Azure service</label><input id="q" type="search" placeholder="Where is it? Try Key Vault, Policy" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="res"><ul id="res" hidden></ul></div></div>
+  <div class="find"><label class="sr" for="q">Find an Azure service</label><input id="q" type="search" placeholder="Where is it? Try Key Vault, Policy" autocomplete="off" aria-controls="res"><ul id="res" aria-label="Matching services" hidden></ul></div></div>
 <ol class="steps" id="steps" aria-label="Level"></ol>
 <div id="view"></div>
 <div class="legend"><span><i style="border:1.5px solid var(--acc)"></i>Service that lives in a resource group</span><span><i style="border:1.5px dashed var(--amb)"></i>Service that applies at this level</span><span><i style="border:1px dashed var(--rule)"></i>Applies from a level above</span></div>
@@ -244,14 +244,14 @@ const q=document.getElementById('q'),res=document.getElementById('res');
 function find(){
   const t=q.value.trim().toLowerCase();res.replaceChildren();
   const hits=t?D.services.filter(s=>(s.name+' '+s.id+' '+s.purpose).toLowerCase().includes(t)).slice(0,8):[];
-  res.hidden=!hits.length;q.setAttribute('aria-expanded',String(!!hits.length));
+  res.hidden=!hits.length;document.getElementById('live').textContent=t?hits.length+' matching services':'';
   hits.forEach(s=>res.append(h('li',null,h('button',{type:'button','data-id':s.id},h('span',null,s.name),h('small',null,s.scope.levels.map(l=>LV[l].label).join(', ')+(unc(s)?' (unconfirmed)':''))))));
 }
 q.addEventListener('input',find);
-q.addEventListener('keydown',e=>{if(e.key==='Escape'){res.hidden=true;q.setAttribute('aria-expanded','false')}});
+q.addEventListener('keydown',e=>{if(e.key==='Escape')res.hidden=true});
 res.addEventListener('click',e=>{
   const b=e.target.closest('button[data-id]');if(!b)return;
-  const s=S[b.dataset.id];res.hidden=true;q.value='';q.setAttribute('aria-expanded','false');go(target(s),s.id,false);
+  const s=S[b.dataset.id];res.hidden=true;q.value='';go(target(s),s.id,false);
 });
 const n=D.services.filter(unc).length;
 document.getElementById('foot').append('Levels are read from the Azure with Terraform data and checked against Microsoft Learn; '+n+' of '+D.services.length+' services are marked unconfirmed. Azure data last changed '+D.checked+'. ',h('a',{href:'../azure/index.html'},'Azure with Terraform'),' holds the facts, relationships and sources.');
