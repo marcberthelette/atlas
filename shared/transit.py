@@ -289,9 +289,11 @@ h1{font:900 clamp(2.6rem,9vw,4.6rem)/.98 var(--g);letter-spacing:-.04em;color:va
 .band{border:3px solid var(--fg);border-radius:14px}.band.cur{border-color:var(--fam);border-width:4px}
 .band.cur h2{font:900 1.7rem var(--g);color:var(--fg)}.band h2{font:900 1.15rem var(--g)}
 .kick,.band h3,.tag{font:900 .8rem var(--g)}
-.svc{border:3px dashed var(--fg);border-radius:12px}.svc.res{border:3px solid var(--fam)}.svc b{font-weight:900}
-.pill{border:2px dashed var(--fg);color:var(--fg);font-weight:700}
+.svc{border:3px solid var(--fg);border-radius:12px}.svc.res{border:3px solid var(--fam)}.svc b{font-weight:900}
+.pill{color:var(--fg);font-weight:700}
 .grp{border:3px solid var(--fg);border-radius:12px}
+.band p a,.foot a{text-decoration:underline;text-underline-offset:.2em}
+.lg-res{border-color:var(--fam)}.lg-here{border:3px solid var(--fg)}
 .go{border:3px solid var(--fg);border-radius:999px;font-weight:900}.go:hover{background:var(--fg);color:var(--bg)}
 """
 
