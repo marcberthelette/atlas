@@ -11,6 +11,7 @@ validate:  ## Validate every topic, and check no verbatim source text is tracked
 	$(PY) shared/atlas.py check
 	$(PY) shared/spec.py
 	$(PY) shared/lenses_check.py
+	$(PY) shared/build_workos_explorer.py check
 	@! git ls-files | grep -E '/(snapshots|review)/' || { echo "snapshots or review files are tracked: they must stay local"; exit 1; }
 	@for t in $(TOPICS); do $(MAKE) --no-print-directory -C topics/$$t validate || exit 1; done
 
@@ -19,6 +20,7 @@ build:  ## Build every topic and the landing page into dist/
 	$(PY) shared/build_views.py
 	$(PY) shared/build_lenses.py
 	$(PY) shared/build_explorer.py
+	$(PY) shared/build_workos_explorer.py
 	$(PY) shared/build_site.py
 
 serve: build  ## Build and serve dist/ on http://localhost:8000

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WorkOS explorer - Atlas</title>
+<style>
+
+@font-face{font-family:'Red Hat Display';font-style:normal;font-weight:500 900;font-display:swap;src:url(../fonts/RedHatDisplay-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Red Hat Display';font-style:normal;font-weight:500 900;font-display:swap;src:url(../fonts/RedHatDisplay-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{color-scheme:light;--ink:#14181F;--ground:#FFFFFF;--soft:#F2F4F7;--mut:#4A5260;--rule:#D5DAE1;--iac:#0057B8;--iacf:#fff;--cic:#D6001C;--cicf:#fff;--dev:#00843D;--devf:#fff;--ent:#F28C00;--entf:#14181F;--tst:#7B3FC4;--tstf:#fff;--wire:#5C6675;--warn:#8A6700;--bad:#C62828;--acc:#0057B8;--g:'Red Hat Display','Helvetica Neue',Arial,sans-serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--ink:#EEF1F5;--ground:#0F131A;--soft:#1A202B;--mut:#A9B3C1;--rule:#2C3543;--iac:#4C9AFF;--iacf:#0F131A;--cic:#FF6B7A;--cicf:#0F131A;--dev:#3DC878;--devf:#0F131A;--ent:#F5A524;--entf:#0F131A;--tst:#B792FF;--tstf:#0F131A;--wire:#8793A5;--warn:#D4A72C;--bad:#EF5350;--acc:#4C9AFF}}:root[data-theme=dark]{color-scheme:dark;--ink:#EEF1F5;--ground:#0F131A;--soft:#1A202B;--mut:#A9B3C1;--rule:#2C3543;--iac:#4C9AFF;--iacf:#0F131A;--cic:#FF6B7A;--cicf:#0F131A;--dev:#3DC878;--devf:#0F131A;--ent:#F5A524;--entf:#0F131A;--tst:#B792FF;--tstf:#0F131A;--wire:#8793A5;--warn:#D4A72C;--bad:#EF5350;--acc:#4C9AFF}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font:500 1.0625rem/1.6 var(--g)}
+::selection{background:var(--acc);color:var(--ground)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+[data-fam=iac]{--fc:var(--cic);--fcf:var(--cicf)}[data-fam=cicd]{--fc:var(--dev);--fcf:var(--devf)}
+[data-fam=development]{--fc:var(--iac);--fcf:var(--iacf)}[data-fam=enterprise]{--fc:var(--ent);--fcf:var(--entf)}[data-fam=test]{--fc:var(--tst);--fcf:var(--tstf)}[data-fam=saas]{--fc:var(--mut);--fcf:var(--ground)}[data-fam=views]{--fc:var(--ink);--fcf:var(--ground)}
+
+body{--bg:var(--ground);--fg:var(--ink);--card:var(--soft);--lane:var(--soft);--accfg:var(--ground);--ok:var(--dev);--acc:var(--ink);--fam:var(--fc);--famf:var(--fcf)}
+*{box-sizing:border-box}
+body{font:16px/1.45 system-ui,sans-serif;background:var(--bg);color:var(--fg);margin:0}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+main{max-width:1100px;margin:0 auto;padding:16px}
+h1{font-size:clamp(1.5rem,3.5vw,1.9rem);line-height:1.15;letter-spacing:-.01em;text-wrap:balance;color:var(--acc);margin:0}
+.sub{color:var(--mut);margin:2px 0 12px;font-size:.95rem;max-width:70ch}
+.find{position:relative;max-width:640px;margin:0 0 12px}
+.find input{width:100%;border:1px solid var(--edge);border-radius:8px;padding:8px 12px;background:var(--bg);min-height:40px}
+.find ul{position:absolute;z-index:5;left:0;width:100%;top:100%;margin:4px 0 0;padding:4px;list-style:none;max-height:60vh;overflow:auto;background:var(--bg);border:1px solid var(--rule);border-radius:8px;box-shadow:0 6px 20px color-mix(in srgb,var(--fg) 18%,transparent)}
+.find li{display:flex;flex-direction:column;padding:8px 10px;border-radius:6px}
+.find li[role=option]{cursor:pointer}
+.find li[role=option]:hover,.find li[aria-selected=true]{background:var(--card)}
+.find li[aria-selected=true]{outline:2px solid var(--acc);outline-offset:-2px}
+.find li.none{color:var(--mut);font-size:.9rem}
+.find li small{color:var(--mut)}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px;padding:0;list-style:none;align-items:center}
+.steps li{display:flex;align-items:center;gap:6px}
+.steps button{border:1px solid transparent;background:none;border-radius:999px;padding:6px 14px;cursor:pointer;min-height:40px;color:var(--mut)}
+.steps button:hover{color:var(--fg);border-color:var(--rule)}
+.steps button[aria-current=step]{background:var(--acc);color:var(--accfg);font-weight:600}
+.band{border:1px solid var(--rule);border-radius:14px;background:var(--lane);padding:14px 16px;margin:0 0 6px}
+.band.cur{border:2px solid var(--acc);background:var(--card);padding:16px 18px}
+.band h2{margin:0;font-size:1.05rem}
+.band.cur h2{font-size:1.35rem;color:var(--acc)}
+.band h2:focus{outline:none}
+.kick{display:block;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);margin-bottom:2px}
+.band p{margin:4px 0 0;color:var(--mut);font-size:.92rem;max-width:80ch}
+.band h3{margin:14px 0 6px;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mut)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0;padding:0;list-style:none}
+.pill{border-radius:6px;padding:3px 10px;font-size:.85rem;color:var(--mut);background:var(--rule);text-decoration:none;display:inline-block}
+a.pill:hover{color:var(--fg);text-decoration:underline}
+.cards{display:grid;align-items:start;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:10px;margin:0;padding:0;list-style:none}
+.svc{display:flex;flex-direction:column;gap:2px;border:1.5px solid var(--amb);border-radius:10px;background:color-mix(in srgb,var(--amb) 9%,var(--bg));padding:9px 12px;text-decoration:none;color:inherit}
+.svc:hover{background:color-mix(in srgb,var(--amb) 16%,var(--bg))}
+.svc b{font-size:.95rem}
+.svc span{font-size:.85rem;color:var(--mut);line-height:1.35}
+.svc small{font-size:.82rem;color:var(--mut)}
+.svc.res{border:1.5px solid var(--acc);border-radius:9px;padding:6px 10px;flex-direction:row;align-items:center;gap:8px;height:auto}
+.svc.res b{font-weight:500}
+.svc.sel{outline:3px solid var(--fg);outline-offset:2px;background:var(--card)}
+.tag{display:inline-block;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--amb)}
+.un{color:var(--mut);font-style:italic}
+.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:12px}
+.grp{border:1px solid var(--rule);border-radius:10px;background:var(--bg);padding:10px 12px}
+.grp h3{margin:0 0 6px}
+.go{margin-top:12px;display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--acc);background:var(--bg);border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:600;min-height:44px}
+.go:hover{background:var(--acc);color:var(--accfg)}
+.up{margin-top:8px;border:0;background:none;color:var(--acc);cursor:pointer;padding:6px 0;text-decoration:underline}
+.upline{display:flex;flex-wrap:wrap;align-items:center;gap:0 14px;margin:0 0 8px;color:var(--mut);font-size:.92rem}
+.upline .up{margin:0;min-height:40px}
+.hit{outline:3px solid var(--fg);outline-offset:2px;background:var(--card);border-radius:6px;padding:4px 8px}
+.arrow{color:var(--mut);margin:0 0 6px 18px;font-size:.85rem}
+.band h3 i{display:inline-block;width:22px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:8px}
+.lg-res{border:1.5px solid var(--acc)}.lg-here{border:1.5px solid var(--amb);background:color-mix(in srgb,var(--amb) 9%,var(--bg))}.lg-above{background:var(--rule)}
+.band p a{color:var(--acc)}
+.foot{color:var(--mut);font-size:.85rem;margin:14px 0 0;max-width:80ch}
+.foot a{color:var(--acc)}
+.via{font-size:.82rem;color:var(--mut);font-style:italic}
+.sr{position:absolute;left:-9999px}
+
+.atlas.two{display:block;position:sticky;top:0;z-index:5;background:var(--ground);border-bottom:1px solid var(--rule);margin:0 0 1.4rem;padding:.7rem max(1rem,calc(50vw - 560px)) .6rem}
+.atlas .fams{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem 1rem}
+.atlas .home{background:var(--ink);color:var(--ground);font-weight:900;letter-spacing:.03em;padding:.25rem 1rem;border-radius:6px}
+.atlas .fb{display:flex;flex:1;flex-wrap:wrap;gap:.4rem;overflow:visible}
+.atlas button[data-fam]{font:900 .95rem var(--g);padding:.2rem 1rem;border-radius:999px;border:3px solid var(--fc);background:var(--ground);color:var(--ink);cursor:pointer}
+.atlas button[data-fam]:hover{background:var(--soft)}
+.atlas button[data-fam][aria-pressed=true]{background:var(--fc);color:var(--fcf)}
+.atlas .rt{display:flex;align-items:center;gap:.4rem}
+.atlas .tg{display:inline-flex;align-items:center;justify-content:center;min-height:2rem;font:900 .9rem var(--g);padding:.1rem .8rem;border-radius:999px;border:3px solid var(--ink);background:var(--ground);color:var(--ink);cursor:pointer;white-space:nowrap}
+.atlas .tg:hover{background:var(--ink);color:var(--ground)}
+.atlas .tg svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.atlas .tops{display:flex;flex-wrap:wrap;gap:.3rem 1rem;margin-top:.6rem}
+.atlas.none .tops{display:none}
+.atlas .tops>div{display:flex;flex-wrap:wrap;gap:.2rem 1.1rem}
+.atlas .tops a{display:inline-flex;align-items:center;gap:.45rem;font-weight:700;padding:.1rem .3rem;border-radius:8px;white-space:nowrap}
+.atlas .tops a::before{content:"";width:16px;height:16px;border-radius:50%;border:4px solid var(--fc);background:var(--ground)}
+.atlas .tops a:hover::before,.atlas .tops a[aria-current=page]::before{background:var(--fc)}
+.atlas .tops a[aria-current=page]{text-decoration:underline;text-underline-offset:4px}
+.atlas .skip{position:absolute;left:-9999px}.atlas .skip:focus{left:8px;top:8px;z-index:10;background:var(--ground);padding:.3rem .8rem}
+dialog.ai{max-width:min(560px,92vw);border:3px solid var(--ink);border-radius:14px;background:var(--ground);color:var(--ink);padding:1.4rem 1.6rem;font:500 1rem/1.55 var(--g)}
+dialog.ai::backdrop{background:rgba(10,12,16,.6)}
+dialog.ai h2{margin:0 3.5rem .6rem 0;font:900 1.7rem var(--g);letter-spacing:-.02em}dialog.ai p{margin:.6rem 0}
+dialog.ai .cl{position:absolute;top:1rem;right:1rem;font:900 .9rem var(--g);padding:.1rem .9rem;border-radius:999px;border:3px solid var(--ink);background:var(--ground);color:var(--ink);cursor:pointer}
+dialog.ai .dx{display:flex;gap:.7rem;align-items:flex-start;margin:1rem 0;font-weight:700;cursor:pointer}dialog.ai .dx input{width:1.3rem;height:1.3rem;margin-top:.2rem;accent-color:var(--acc)}
+dialog.ai .dx small{display:block;font-weight:500;color:var(--mut)}
+dialog.ai .vr{font-size:.9rem;color:var(--mut);word-break:break-all}dialog.ai a{text-decoration:underline}
+.atlas-foot{max-width:1120px;margin:3rem auto 0;padding:1.4rem clamp(1rem,3vw,2rem) 3rem;border-top:1px solid var(--rule);color:var(--mut);font-size:.9rem}
+.atlas-foot p{margin:.4rem 0;max-width:80ch}
+@media(max-width:560px){.atlas .fb{flex-basis:100%;order:3}}
+
+
+body{font:500 1.0625rem/1.6 var(--g)}
+main{max-width:1180px}
+.atlas.two{padding-inline:max(1rem,calc(50vw - 590px))}
+h1{font:900 clamp(2.6rem,9vw,4.6rem)/.98 var(--g);letter-spacing:-.04em;color:var(--fg)}
+.sub{font-size:1.1rem}
+.find input{border:3px solid var(--fg);border-radius:999px;padding:.5rem 1.2rem;font-weight:700;background:var(--card)}
+.find ul{border:3px solid var(--fg);border-radius:14px}
+.steps button{font-weight:900;border:3px solid var(--fg);color:var(--fg)}
+.steps button[aria-current=step]{background:var(--fg);color:var(--bg)}
+.band{border:3px solid var(--fg);border-radius:14px}.band.cur{border-color:var(--fam);border-width:4px}
+.band.cur h2{font:900 1.7rem var(--g);color:var(--fg)}.band h2{font:900 1.15rem var(--g)}
+.kick,.band h3,.tag{font:900 .8rem var(--g)}
+.svc{border:3px solid var(--fg);border-radius:12px}.svc.res{border:3px solid var(--fam)}.svc b{font-weight:900}
+.pill{color:var(--fg);font-weight:700}
+.grp{border:3px solid var(--fg);border-radius:12px}
+.band p a,.foot a{text-decoration:underline;text-underline-offset:.2em}
+.lg-res{border-color:var(--fam)}.lg-here{border:3px solid var(--fg)}
+.go{border:3px solid var(--fg);border-radius:999px;font-weight:900}.go:hover{background:var(--fg);color:var(--bg)}
+</style></head><body data-fam="views">
+<nav class="atlas two" aria-label="Atlas" data-current="views" data-look="transit"><a class="skip" href="#">Skip to content</a><div class="fams"><a class="home" href="../index.html" aria-label="Atlas home" title="Atlas home">ATLAS</a><div class="fb" role="group" aria-label="Families"><button type="button" data-fam="views" aria-pressed="false">Interchanges</button><button type="button" data-fam="iac" aria-pressed="false">IaC</button><button type="button" data-fam="cicd" aria-pressed="false">CI/CD</button><button type="button" data-fam="development" aria-pressed="false">Development</button><button type="button" data-fam="enterprise" aria-pressed="false">Enterprise</button><button type="button" data-fam="test" aria-pressed="false">Test</button><button type="button" data-fam="saas" aria-pressed="false">SaaS</button></div><div class="rt"><a class="tg lk" href="../../workos-explorer/index.html" data-look="classic" title="Switch to the classic look">Classic look</a><button type="button" class="tg th"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13.5A8.5 8.5 0 0 1 10.5 3 8.5 8.5 0 1 0 21 13.5z"/></svg></button><button type="button" class="tg ab" aria-label="About Atlas" title="About Atlas"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg></button></div></div><div class="tops"><div data-fam="views" aria-label="Interchanges"><a href="../devops-loop/index.html">DevOps loop</a><a href="../lenses/index.html">Lenses</a><a href="../explorer/index.html">Azure explorer</a><a href="../workos-explorer/index.html" aria-current="page">WorkOS explorer</a></div><div data-fam="iac" aria-label="IaC"><a href="../azure/index.html">Azure with Terraform</a><a href="../terraform/index.html">Terraform</a><a href="../gitops/index.html">GitOps</a></div><div data-fam="cicd" aria-label="CI/CD"><a href="../azure-devops/index.html">Azure DevOps</a><a href="../github-actions/index.html">GitHub Actions</a></div><div data-fam="development" aria-label="Development"><a href="../patterns/index.html">Architecture and design patterns</a><a href="../certificates/index.html">Certificates</a></div><div data-fam="enterprise" aria-label="Enterprise"><a href="../identity/index.html">Identity providers</a><a href="../topologies/index.html">Enterprise topologies</a></div><div data-fam="test" aria-label="Test"><a href="../test-types/index.html">Test types</a></div><div data-fam="saas" aria-label="SaaS"><a href="../workos/index.html">WorkOS</a><a href="../cloudflare/index.html">Cloudflare</a></div></div><dialog class="ai" aria-labelledby="ai-t"><button type="button" class="cl">Close</button><h2 id="ai-t">About Atlas</h2><p>Everything here is collected with AI assistance from public sources, and it changes. Always check the real source (the links and dates on each entry) before relying on it. Entries marked <b>?</b> or "unconfirmed" haven't been verified yet.</p><p>This is a personal project, not an official resource of Microsoft, HashiCorp, Argo CD or any other product named here.</p><label class="dx" hidden><input type="checkbox"><span>Show entry details<small>Release and check dates, status, CNCF, licence, and every source. The version analysed is always shown.</small></span></label><p class="vr">Version <a href="https://github.com/marcberthema/atlas/commit/v1.8.0" target="_blank" rel="noopener"><code>v1.8.0</code></a><br>Source <a href="https://github.com/marcberthema/atlas" target="_blank" rel="noopener">https://github.com/marcberthema/atlas</a></p></dialog><script>(function(){var n=document.currentScript.parentNode,bs=n.querySelectorAll('button[data-fam]'),ps=n.querySelectorAll('.tops [data-fam]'),keep=n.dataset.current,sel='';
+function h(){document.documentElement.style.setProperty('--atlash',n.offsetHeight+'px')}
+function show(f){sel=f;n.classList.toggle('none',!f);bs.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.fam===f)});ps.forEach(function(p){p.hidden=p.dataset.fam!==f});document.querySelectorAll('main [data-fam]').forEach(function(c){c.hidden=!!f&&c.dataset.fam!==f});h()}
+bs.forEach(function(b){b.addEventListener('click',function(){show(sel===b.dataset.fam&&!keep?'':b.dataset.fam)})});
+n.querySelector('.skip').addEventListener('click',function(e){var m=document.querySelector('main');if(m){e.preventDefault();m.tabIndex=-1;m.focus()}});
+var root=document.documentElement,mq=matchMedia('(prefers-color-scheme:dark)'),tg=n.querySelector('.th');
+function eff(){return root.dataset.theme||(mq.matches?'dark':'light')}
+function paint(){var d=eff()==='dark';tg.querySelector('.sun').toggleAttribute('hidden',!d);tg.querySelector('.moon').toggleAttribute('hidden',d);tg.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode');tg.title=tg.getAttribute('aria-label')}
+try{var st=localStorage.getItem('atlas-theme');if(st)root.dataset.theme=st}catch(e){}
+tg.addEventListener('click',function(){var t=eff()==='dark'?'light':'dark';root.dataset.theme=t;try{localStorage.setItem('atlas-theme',t)}catch(e){}paint()});
+if(mq.addEventListener)mq.addEventListener('change',paint);
+var dl=n.querySelector('dialog.ai'),dx=dl.querySelector('.dx'),cb=dx.querySelector('input');
+try{root.dataset.details=localStorage.getItem('atlas-details')==='1'?'show':'hide'}catch(e){root.dataset.details='hide'}
+n.querySelector('.ab').addEventListener('click',function(){dx.hidden=!root.dataset.xd;cb.checked=root.dataset.details==='show';dl.showModal()});
+cb.addEventListener('change',function(){root.dataset.details=cb.checked?'show':'hide';try{localStorage.setItem('atlas-details',cb.checked?'1':'0')}catch(e){}});
+dl.querySelector('.cl').addEventListener('click',function(){dl.close()});
+dl.addEventListener('click',function(e){if(e.target===dl)dl.close()});
+var lk=n.querySelector('.lk');
+if(lk){try{var w=localStorage.getItem('atlas-look');if(w&&w!==n.dataset.look){location.replace(lk.getAttribute('href')+location.hash);return}}catch(e){}
+lk.addEventListener('click',function(){try{localStorage.setItem('atlas-look',lk.dataset.look)}catch(e){}lk.href=lk.getAttribute('href').split('#')[0]+location.hash})}
+paint();addEventListener('resize',h);show(keep)})();</script></nav>
+<main>
+<p id="live" class="sr" role="status"></p>
+<h1>WorkOS explorer</h1><p class="sub">Where does a WorkOS object live, and what does it belong to? Start at the team and go down. At every level you see what starts there and what stays around from above. To see the facts and the API, open its entry.</p>
+<div class="find"><label class="sr" for="q">Find a WorkOS object</label><input id="q" type="search" placeholder="Where is it? Try SSO, API key, membership" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="res"><ul id="res" role="listbox" aria-label="Matching objects" hidden></ul></div>
+<ol class="steps" id="steps" aria-label="Level"></ol>
+<div id="view"></div>
+<p class="foot" id="foot"></p>
+</main>
+<footer class="atlas-foot"><p>Everything here is collected with AI assistance from public sources, and it changes. Always check the real source (the links and dates on each entry) before relying on it. Entries marked <b>?</b> or "unconfirmed" haven't been verified yet.</p><p>This is a personal project, not an official resource of Microsoft, HashiCorp, Argo CD or any other product named here.</p></footer>
+<script id="data" type="application/json">{"title":"WorkOS explorer","checked":"2026-11-15","basis":"WorkOS docs read on 2026-11-15; the pages show no date or version, so the read date is used.","pages":{"projects":{"label":"Projects","url":"https://workos.com/docs/authkit/projects"},"environments":{"label":"Staging vs. production environments","url":"https://workos.com/docs/authkit/environments"},"applications":{"label":"Applications","url":"https://workos.com/docs/authkit/applications"},"members":{"label":"Dashboard members and roles","url":"https://workos.com/docs/dashboard/members-and-roles"},"team-auth":{"label":"Team authentication","url":"https://workos.com/docs/dashboard/authentication"},"billing":{"label":"Billing","url":"https://workos.com/docs/dashboard/billing"},"users-orgs":{"label":"Users and Organizations","url":"https://workos.com/docs/authkit/users-organizations"},"org-ref":{"label":"API reference: Organization","url":"https://workos.com/docs/reference/organization"},"membership-ref":{"label":"API reference: Organization membership","url":"https://workos.com/docs/reference/user-management/organization-membership"},"domains":{"label":"SSO: Domains","url":"https://workos.com/docs/sso/domains"},"sso":{"label":"Single Sign-On","url":"https://workos.com/docs/sso"},"dsync":{"label":"Directory Sync","url":"https://workos.com/docs/directory-sync"},"admin-portal":{"label":"Admin Portal","url":"https://workos.com/docs/admin-portal"},"api-keys":{"label":"API Keys","url":"https://workos.com/docs/authkit/api-keys"},"m2m":{"label":"M2M Applications","url":"https://workos.com/docs/authkit/connect/m2m"},"rbac":{"label":"Role-Based Access Control","url":"https://workos.com/docs/rbac"},"custom-roles":{"label":"Custom Roles","url":"https://workos.com/docs/rbac/custom-roles"},"fga":{"label":"FGA: standalone integration","url":"https://workos.com/docs/fga/standalone-integration"},"flags":{"label":"Feature Flags","url":"https://workos.com/docs/feature-flags"},"audit":{"label":"Audit Logs","url":"https://workos.com/docs/audit-logs"},"events":{"label":"Events","url":"https://workos.com/docs/events"},"pipes":{"label":"Pipes","url":"https://workos.com/docs/pipes"},"pipes-share":{"label":"Pipes: connection sharing","url":"https://workos.com/docs/pipes/connection-sharing"},"pipes-org":{"label":"Pipes: organization-scoped providers","url":"https://workos.com/docs/pipes/organization-scoped-providers"},"vault":{"label":"Vault","url":"https://workos.com/docs/vault"},"widgets-auth":{"label":"Widgets API: Authentication","url":"https://workos.com/docs/widgets-api/authentication"},"widgets-keys":{"label":"Widgets API: API keys","url":"https://workos.com/docs/widgets-api/api-keys"}},"levels":[{"id":"team","label":"Team","parent":null,"entry":"platform","src":["projects","members"],"description":"Your WorkOS account: the people who use the Dashboard, billing and the projects. It is not a customer of your app and holds none of your app's users."},{"id":"project","label":"Project","parent":"team","entry":"platform","src":["projects"],"description":"Groups the environments of one product. Every team starts with one project holding a staging and a production environment. Use a project for a fully separate setup, such as another product."},{"id":"environment","label":"Environment","parent":"project","entry":"platform","src":["environments","projects"],"description":"Staging or production, fully isolated. API keys, users, organizations, connections, webhook endpoints and branding are each scoped to one environment and do not carry over."},{"id":"organization","label":"Organization","parent":"environment","entry":"authkit","src":["users-orgs","org-ref"],"description":"A customer (tenant) of your app. The top-level resource that SSO connections, directories and audit log events belong to. It has no limit on number. It reaches users only through memberships."},{"id":"user","label":"User","parent":"environment","entry":"authkit","src":["users-orgs"],"description":"A person who signs in, identified by email address. The user belongs to the environment, not to an organization: one user can be a member of zero, one or many organizations."}],"objects":[{"id":"dashboard-members","name":"Dashboard members and roles","entry":"platform","at":"team","also":[],"status":"verified","src":["members"],"summary":"People who sign in to the WorkOS Dashboard, each with a role. A dashboard user can belong to only one team.","note":"Not the users of your app."},{"id":"team-authentication","name":"Team authentication","entry":"platform","at":"team","also":[],"status":"verified","src":["team-auth"],"summary":"Require MFA, set up SSO and provision dashboard accounts from your identity provider.","note":""},{"id":"billing","name":"Billing","entry":"platform","at":"team","also":[],"status":"unconfirmed","src":["billing","environments"],"summary":"Payment method, invoices and usage. Adding billing information unlocks the production environment.","note":"The Billing page sits with the team pages of the Dashboard docs but does not state its level in so many words."},{"id":"feature-flag-definitions","name":"Feature flag definitions","entry":"feature-flags","at":"project","also":["environment"],"status":"verified","src":["projects","flags"],"summary":"Defined once for the project and shared by every environment in it.","note":""},{"id":"audit-schema","name":"Audit Logs schema","entry":"audit-logs","at":"project","also":["environment"],"status":"verified","src":["projects","audit"],"summary":"The actions and targets your audit events may use, shared across the project's environments.","note":""},{"id":"custom-email-domains","name":"Custom email domains","entry":"platform","at":"project","also":["environment"],"status":"verified","src":["projects"],"summary":"The sender domain for WorkOS emails, shared across the project's environments.","note":""},{"id":"environment-key","name":"API key and client ID","entry":"api","at":"environment","also":[],"status":"verified","src":["environments","applications"],"summary":"Your server's secret key (sk_...) to call WorkOS, with the client ID. In staging the key can be viewed again; in production it is shown once.","note":"Each application in an environment has its own client ID."},{"id":"application","name":"Application","entry":"authkit","at":"environment","also":[],"status":"verified","src":["applications"],"summary":"One client of your product (web, mobile or desktop). It has its own client ID, redirect URIs and sessions, and shares the environment's users. A default one exists.","note":""},{"id":"branding","name":"Branding","entry":"authkit","at":"environment","also":[],"status":"verified","src":["environments","applications"],"summary":"Logo, colours and theme of the hosted sign-in and the Admin Portal. Can be copied from another environment.","note":""},{"id":"webhook-endpoint","name":"Webhook endpoint","entry":"events","at":"environment","also":[],"status":"verified","src":["environments","events"],"summary":"Where WorkOS sends events for this environment.","note":""},{"id":"environment-roles","name":"Environment roles and permissions","entry":"rbac","at":"environment","also":["organization"],"status":"verified","src":["rbac","fga"],"summary":"Roles that apply across all organizations. An organization can add custom roles of its own.","note":""},{"id":"m2m-app","name":"M2M application","entry":"authkit","at":"environment","also":["organization"],"status":"unconfirmed","src":["m2m"],"summary":"Credentials for a customer's service to call your API (client credentials). The token carries an org_id claim for the organization granted access.","note":"The page says what it is for, not where it is configured; the environment is inferred."},{"id":"pipes-provider","name":"Pipes provider","entry":"pipes","at":"environment","also":["organization"],"status":"unconfirmed","src":["pipes","pipes-org"],"summary":"A third-party service (GitHub, Slack, ...) you enable for users to connect. Set up in the Dashboard; an organization can override its scopes and credentials.","note":"The environment level is inferred from the Dashboard setup, not stated."},{"id":"vault","name":"Vault","entry":"vault","at":"environment","also":["organization","user"],"status":"unconfirmed","src":["vault"],"summary":"Encrypted storage for secrets, with keys segmented by organization, user or any context you give.","note":"The docs describe the key context, not the level the store lives at."},{"id":"domain","name":"Domain","entry":"sso","at":"organization","also":[],"status":"verified","src":["domains"],"summary":"An email domain of the customer. It must be verified (by the Dashboard, the Admin Portal or DNS) before SSO works. A sign-in whose email does not match is rejected by default.","note":""},{"id":"sso-connection","name":"SSO connection","entry":"sso","at":"organization","also":[],"status":"verified","src":["sso","org-ref"],"summary":"The SAML or OIDC link between the organization and its identity provider. This is where SSO fits.","note":""},{"id":"directory","name":"Directory","entry":"directory-sync","at":"organization","also":[],"status":"verified","src":["dsync","org-ref"],"summary":"A synced user directory (SCIM) with its directory users and directory groups. Separate from your app's users.","note":""},{"id":"admin-portal-link","name":"Admin Portal link","entry":"admin-portal","at":"organization","also":[],"status":"unconfirmed","src":["admin-portal"],"summary":"A link that lets the customer's IT contact verify domains and set up SSO and Directory Sync themselves.","note":"The page describes the link; that it is made for one organization is inferred."},{"id":"organization-api-key","name":"Organization API key","entry":"authkit","at":"organization","also":[],"status":"verified","src":["api-keys","widgets-keys"],"summary":"A key owned by the organization to call your API, with permissions you allow. The secret is shown once, at creation.","note":""},{"id":"custom-role","name":"Custom role","entry":"rbac","at":"organization","also":[],"status":"verified","src":["custom-roles","fga"],"summary":"A role defined for one organization only.","note":""},{"id":"fga-resource","name":"FGA resource","entry":"fga","at":"organization","also":[],"status":"verified","src":["fga"],"summary":"A thing in your app that access is granted on. The organization is the root of the resource hierarchy; roles are assigned on resources.","note":""},{"id":"audit-event","name":"Audit log event","entry":"audit-logs","at":"organization","also":[],"status":"verified","src":["audit","org-ref"],"summary":"A record of an action (who, what, on what). Each event belongs to an organization.","note":""},{"id":"membership","name":"Organization membership","entry":"authkit","at":"organization","also":["user"],"status":"verified","src":["membership-ref","users-orgs"],"summary":"Links one user to one organization, with one or more roles. This is how a user is in an organization.","note":"Owned here, seen from the user as well."},{"id":"shared-pipes-connection","name":"Shared Pipes connection","entry":"pipes","at":"organization","also":[],"status":"verified","src":["pipes","pipes-share"],"summary":"An administrator connects a provider once and shares it with every active member.","note":""},{"id":"user-api-key","name":"User API key","entry":"authkit","at":"user","also":["organization"],"status":"verified","src":["api-keys","widgets-keys"],"summary":"A key owned by one member, limited to the permissions enabled for user keys. Managing all of an organization's user keys is a separate permission.","note":""},{"id":"pipes-connection","name":"Pipes connection","entry":"pipes","at":"user","also":[],"status":"verified","src":["pipes"],"summary":"By default each user connects and owns their own third-party account.","note":""},{"id":"mfa-factor","name":"MFA factor","entry":"mfa","at":"user","also":[],"status":"verified","src":["widgets-auth"],"summary":"A second factor the signed-in user manages.","note":""},{"id":"session","name":"Session","entry":"authkit","at":"user","also":[],"status":"verified","src":["widgets-auth"],"summary":"An active sign-in of the user, which can be listed and revoked.","note":""}],"keys":[{"id":"key-environment","name":"Environment API key","level":"environment","entry":"api","src":["environments"],"status":"verified","held":"Your server","use":"Your backend calls the WorkOS API. One per environment; never in a browser or a mobile app."},{"id":"key-organization","name":"Organization API key","level":"organization","entry":"authkit","src":["api-keys"],"status":"verified","held":"A customer's organization","use":"The customer calls your API. Created by their admins with the API Keys widget, limited to permissions you allow."},{"id":"key-user","name":"User API key","level":"user","entry":"authkit","src":["api-keys"],"status":"verified","held":"One member","use":"A single person calls your API, with permissions enabled for user keys."},{"id":"key-m2m","name":"M2M application","level":"environment","entry":"authkit","src":["m2m","api-keys"],"status":"unconfirmed","note":"The page says what it is for, not where it is configured; the environment is inferred.","held":"A customer's or partner's service","use":"Server-to-server calls with client credentials; the token names the organization. The other way, next to API keys, to give customers programmatic access."}]}</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent);
+const AT='../workos/index.html#';
+const NAV=D.levels.map(l=>l.id).concat('keys');
+const LV=Object.fromEntries(D.levels.map(l=>[l.id,l]));
+const O=Object.fromEntries(D.objects.concat(D.keys).map(o=>[o.id,o]));
+const kids=id=>D.levels.filter(l=>l.parent===id);
+const path=id=>{const p=[];for(let l=LV[id];l;l=LV[l.parent])p.unshift(l);return p};
+const under=(a,b)=>a!==b&&path(b).some(l=>l.id===a); // b sits under a
+const h=(tag,a,...kids)=>{const e=document.createElement(tag);for(const k in a||{}){if(k==='class')e.className=a[k];else e.setAttribute(k,a[k])}kids.flat().forEach(c=>e.append(c));return e};
+const key=k=>h('i',{class:'lg-'+k,'aria-hidden':'true'});
+const unc=o=>o.status!=='verified';
+const lab=id=>id==='keys'?'Keys':LV[id].label;
+let cur='team',sel=null;
+
+function srcLinks(o){return h('small',null,'Sources: ',...(o.src||[]).flatMap((k,i)=>[i?', ':'',h('a',{href:D.pages[k].url},D.pages[k].label)]))}
+function card(o,from){
+  const a=h('a',{class:'svc',href:AT+o.entry,'data-id':o.id},h('b',null,o.name),h('span',null,o.summary||o.use||''));
+  if(o.held)a.append(h('small',null,'Held by: '+o.held));
+  if(from)a.append(h('small',{class:'via'},'Owned at the '+lab(o.at).toLowerCase()+' level'));
+  if(unc(o))a.append(h('small',{class:'un'},'unconfirmed: '+o.note));
+  else if(o.note&&!from)a.append(h('small',null,o.note));
+  if(o.id===sel)a.classList.add('sel');
+  return a;
+}
+function band(kind,label,name,desc){
+  return h('section',{class:'band'+(kind==='cur'?' cur':''),'aria-labelledby':'b-'+kind},
+    h('span',{class:'kick'},label),h('h2',{id:'b-'+kind,tabindex:'-1'},name),desc?h('p',null,desc):[]);
+}
+function renderKeys(box){
+  const c=band('cur','You are in','Where is the key?','Four credentials look alike and sit at different levels. The first is yours to call WorkOS; the other three are what you give your customers to call you.');
+  c.append(h('h3',null,key('here'),'The four credentials'),h('ul',{class:'cards'},D.keys.map(k=>h('li',null,card(Object.assign({summary:k.use,at:k.level,note:k.note||''},k),true)))));
+  box.append(c);
+}
+function render(){
+  const box=document.getElementById('view');box.replaceChildren();
+  document.getElementById('steps').replaceChildren(...NAV.map(id=>h('li',null,h('button',Object.assign({type:'button','data-go':id},id===cur?{'aria-current':'step'}:{}),lab(id)))));
+  if(cur==='keys'){renderKeys(box);return fin(box)}
+  const L=LV[cur],par=L.parent;
+  if(par)box.append(h('p',{class:'upline'},'Level above: '+LV[par].label,h('button',{class:'up',type:'button','data-go':par},'Go up')));
+  const c=band('cur','You are in',L.label,L.description);
+  c.append(h('p',null,'Atlas entry: ',h('a',{href:AT+L.entry},L.label+' in the WorkOS topic')),srcLinks(L));
+  const ch=kids(cur);
+  if(ch.length)c.append(h('h3',null,'Contains'),h('p',null,ch.map(k=>k.label).join(' and ')+'.'),...ch.map(k=>h('button',{class:'go',type:'button','data-go':k.id},'Zoom in to '+k.label.toLowerCase()+' ',h('span',{'aria-hidden':'true'},'→'))));
+  const own=D.objects.filter(o=>o.at===cur);
+  c.append(h('h3',null,key('here'),'Starts at this level'),own.length?h('ul',{class:'cards'},own.map(o=>h('li',null,card(o)))):h('p',null,'Nothing new starts here.'));
+  const seen=D.objects.filter(o=>o.at!==cur&&o.also.includes(cur)),
+        link=seen.filter(o=>!under(o.at,cur)),above=seen.filter(o=>under(o.at,cur));
+  if(link.length)c.append(h('h3',null,key('res'),'Linked from here'),h('ul',{class:'cards'},link.map(o=>h('li',null,card(o,true)))));
+  if(above.length)c.append(h('h3',null,key('above'),'Around from a level above'),h('ul',{class:'row'},above.map(o=>h('li',null,h('a',{class:'pill'+(o.id===sel?' hit':''),href:AT+o.entry,title:o.summary},o.name+' ('+lab(o.at).toLowerCase()+')')))));
+  box.append(c);
+  for(const k of ch){
+    const b=band('dn','Level below',k.label,k.description),n=D.objects.filter(o=>o.at===k.id).map(o=>o.name);
+    if(n.length)b.append(h('p',null,'Starts there: '+n.join(', ')+'.'));
+    box.append(h('div',{class:'arrow','aria-hidden':'true'},'contains'),b);
+  }
+  fin(box);
+}
+function fin(box){const hit=box.querySelector('.svc.sel,.hit');if(hit)hit.scrollIntoView({block:'center'})}
+function go(level,id,focus){
+  cur=level;sel=id||null;
+  const hash='#'+level+(id?'/'+id:'');if(location.hash!==hash)history.pushState(null,'',hash);
+  render();announce(focus!==false);
+}
+function announce(focus){
+  document.getElementById('live').textContent=sel?O[sel].name+' is at the '+lab(cur).toLowerCase()+' level':'Showing the '+lab(cur).toLowerCase()+' level';
+  if(focus&&!sel){const t=document.getElementById('b-cur');if(t)t.focus({preventScroll:true})}
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b){go(b.dataset.go);window.scrollTo({top:0})}});
+function fromHash(moved){
+  const [l,id]=location.hash.slice(1).split('/');
+  cur=NAV.includes(l)?l:'team';sel=id&&O[id]?id:null;
+  if(l&&(cur!==l||id&&!sel))history.replaceState(null,'','#'+cur);
+  render();if(moved)announce(true);
+}
+addEventListener('hashchange',()=>fromHash(true));
+// search: where does it live? Objects, the credentials and the levels themselves.
+const ITEMS=D.objects.map(o=>({id:o.id,name:o.name,text:o.summary,at:o.at,o})).concat(
+  D.keys.map(k=>({id:k.id,name:k.name,text:k.use,at:'keys',o:k})),
+  D.levels.map(l=>({id:'level-'+l.id,name:l.label+' (level)',text:l.description,at:l.id,o:null,level:true})));
+const where=it=>it.at==='keys'?'credentials, lives at the '+lab(O[it.id].level).toLowerCase()+' level':path(it.at).map(l=>l.label.toLowerCase()).join(' > ')+(it.level?'':' > '+it.name);
+const q=document.getElementById('q'),res=document.getElementById('res'),live=document.getElementById('live');
+let hits=[],act=-1,t0;
+function say(m){clearTimeout(t0);t0=setTimeout(()=>live.textContent=m,400)}
+function close(){res.hidden=true;act=-1;q.setAttribute('aria-expanded','false');q.removeAttribute('aria-activedescendant')}
+function mark(i){
+  act=i;[...res.querySelectorAll('[role=option]')].forEach((li,k)=>li.setAttribute('aria-selected',k===i));
+  const li=res.querySelectorAll('[role=option]')[i];
+  if(li){q.setAttribute('aria-activedescendant',li.id);li.scrollIntoView({block:'nearest'})}else q.removeAttribute('aria-activedescendant');
+}
+// 0: the name starts with it, 1: in the name, 2: in the id or the text, 3: no match
+function rank(it,t){
+  const n=it.name.toLowerCase();
+  return n.startsWith(t)?0:n.includes(t)?1:(it.id+' '+it.text).toLowerCase().includes(t)?2:3;
+}
+function find(){
+  const t=q.value.trim().toLowerCase();res.replaceChildren();
+  if(!t){hits=[];close();say('');return}
+  const all=ITEMS.filter(i=>rank(i,t)<3).sort((a,b)=>rank(a,t)-rank(b,t));hits=all.slice(0,8);
+  hits.forEach((it,i)=>res.append(h('li',{role:'option',id:'o-'+i,'data-id':it.id,'aria-selected':'false'},h('span',null,it.name),h('small',null,where(it)+(it.o&&unc(it.o)?' (unconfirmed)':'')))));
+  if(!hits.length)res.append(h('li',{role:'presentation',class:'none'},'Nothing matches "'+q.value.trim()+'". Try a shorter word.'));
+  else if(all.length>hits.length)res.append(h('li',{role:'presentation',class:'none'},'+'+(all.length-hits.length)+' more: keep typing to narrow.'));
+  act=-1;q.removeAttribute('aria-activedescendant');res.hidden=false;q.setAttribute('aria-expanded','true');
+  say(hits.length?all.length+' matches':'No match');
+}
+function pick(it){
+  close();q.value='';go(it.at,it.level?null:it.id,false);
+  (document.querySelector('.svc.sel,.hit')||document.getElementById('b-cur')).focus({preventScroll:true});
+}
+q.addEventListener('input',find);
+q.addEventListener('focus',()=>{if(q.value.trim()&&res.hidden)find()});
+q.addEventListener('blur',close);
+q.addEventListener('keydown',e=>{
+  const n=hits.length;
+  if(e.key==='Escape'){if(!res.hidden)close();else q.value=''}
+  else if((e.key==='ArrowDown'||e.key==='ArrowUp')&&n){e.preventDefault();if(res.hidden)find();mark(e.key==='ArrowDown'?(act+1)%n:(act<=0?n-1:act-1))}
+  else if(e.key==='Enter'&&n&&!res.hidden){e.preventDefault();pick(hits[act<0?0:act])}
+});
+res.addEventListener('mousedown',e=>e.preventDefault());
+res.addEventListener('click',e=>{const li=e.target.closest('li[data-id]');if(li)pick(ITEMS.find(i=>i.id===li.dataset.id))});
+const n=D.objects.concat(D.keys).filter(unc).length;
+document.getElementById('foot').append('Levels are read from the WorkOS docs; '+n+' of '+(D.objects.length+D.keys.length)+' items are marked unconfirmed. '+D.basis+' ',h('a',{href:'../workos/index.html'},'WorkOS'),' holds the facts, the API and the sources.');
+fromHash();
+</script>
+</body></html>
