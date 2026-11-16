@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>__TITLE__ - __NAME__</title>
+<style>
+:root{--bg:#fff;--fg:#111;--mut:#555;--acc:#1a3c5e;--accfg:#fff;--rule:#d5dde5;--edge:#76828e;--card:#f6f8fa;--lane:#f1f4f7;--amb:#5b3fa0}
+@media(prefers-color-scheme:dark){:root{--bg:#14181d;--fg:#e8ecef;--mut:#9aa6b2;--acc:#7fb2e5;--accfg:#14181d;--rule:#2b333b;--edge:#7d8996;--card:#1c2229;--lane:#181e24;--amb:#b9a2ff}}
+*{box-sizing:border-box}
+body{font:16px/1.45 system-ui,sans-serif;background:var(--bg);color:var(--fg);margin:0}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+main{max-width:1100px;margin:0 auto;padding:16px}
+h1{font-size:clamp(1.5rem,3.5vw,1.9rem);line-height:1.15;letter-spacing:-.01em;text-wrap:balance;color:var(--acc);margin:0}
+.sub{color:var(--mut);margin:2px 0 12px;font-size:.95rem;max-width:70ch}
+.find{position:relative;max-width:640px;margin:0 0 12px}
+.find input{width:100%;border:1px solid var(--edge);border-radius:8px;padding:8px 12px;background:var(--bg);min-height:40px}
+.find ul{position:absolute;z-index:5;left:0;width:100%;top:100%;margin:4px 0 0;padding:4px;list-style:none;max-height:60vh;overflow:auto;background:var(--bg);border:1px solid var(--rule);border-radius:8px;box-shadow:0 6px 20px color-mix(in srgb,var(--fg) 18%,transparent)}
+.find li{display:flex;flex-direction:column;padding:8px 10px;border-radius:6px}
+.find li[role=option]{cursor:pointer}
+.find li[role=option]:hover,.find li[aria-selected=true]{background:var(--card)}
+.find li[aria-selected=true]{outline:2px solid var(--acc);outline-offset:-2px}
+.find li.none{color:var(--mut);font-size:.9rem}
+.find li small{color:var(--mut)}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px;padding:0;list-style:none;align-items:center}
+.steps li{display:flex;align-items:center;gap:6px}
+.steps button{border:1px solid transparent;background:none;border-radius:999px;padding:6px 14px;cursor:pointer;min-height:40px;color:var(--mut)}
+.steps button:hover{color:var(--fg);border-color:var(--rule)}
+.steps button[aria-current=step]{background:var(--acc);color:var(--accfg);font-weight:600}
+.band{border:1px solid var(--rule);border-radius:14px;background:var(--lane);padding:14px 16px;margin:0 0 6px}
+.band.cur{border:2px solid var(--acc);background:var(--card);padding:16px 18px}
+.band h2{margin:0;font-size:1.05rem}
+.band.cur h2{font-size:1.35rem;color:var(--acc)}
+.band h2:focus{outline:none}
+.kick{display:block;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);margin-bottom:2px}
+.band p{margin:4px 0 0;color:var(--mut);font-size:.92rem;max-width:80ch}
+.band h3{margin:14px 0 6px;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mut)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0;padding:0;list-style:none}
+.pill{border-radius:6px;padding:3px 10px;font-size:.85rem;color:var(--mut);background:var(--rule);text-decoration:none;display:inline-block}
+a.pill:hover{color:var(--fg);text-decoration:underline}
+.cards{display:grid;align-items:start;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:10px;margin:0;padding:0;list-style:none}
+.svc{display:flex;flex-direction:column;gap:2px;border:1.5px solid var(--amb);border-radius:10px;background:color-mix(in srgb,var(--amb) 9%,var(--bg));padding:9px 12px;text-decoration:none;color:inherit}
+.svc:hover{background:color-mix(in srgb,var(--amb) 16%,var(--bg))}
+.svc b{font-size:.95rem}
+.svc span{font-size:.85rem;color:var(--mut);line-height:1.35}
+.svc small{font-size:.82rem;color:var(--mut)}
+.svc.res{border:1.5px solid var(--acc);border-radius:9px;padding:6px 10px;flex-direction:row;align-items:center;gap:8px;height:auto}
+.svc.res b{font-weight:500}
+.svc.sel{outline:3px solid var(--fg);outline-offset:2px;background:var(--card)}
+.tag{display:inline-block;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--amb)}
+.un{color:var(--mut);font-style:italic}
+.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:12px}
+.grp{border:1px solid var(--rule);border-radius:10px;background:var(--bg);padding:10px 12px}
+.grp h3{margin:0 0 6px}
+.go{margin-top:12px;display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--acc);background:var(--bg);border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:600;min-height:44px}
+.go:hover{background:var(--acc);color:var(--accfg)}
+.up{margin-top:8px;border:0;background:none;color:var(--acc);cursor:pointer;padding:6px 0;text-decoration:underline}
+.upline{display:flex;flex-wrap:wrap;align-items:center;gap:0 14px;margin:0 0 8px;color:var(--mut);font-size:.92rem}
+.upline .up{margin:0;min-height:40px}
+.hit{outline:3px solid var(--fg);outline-offset:2px;background:var(--card);border-radius:6px;padding:4px 8px}
+.arrow{color:var(--mut);margin:0 0 6px 18px;font-size:.85rem}
+.band h3 i{display:inline-block;width:22px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:8px}
+.lg-res{border:1.5px solid var(--acc)}.lg-here{border:1.5px solid var(--amb);background:color-mix(in srgb,var(--amb) 9%,var(--bg))}.lg-above{background:var(--rule)}
+.band p a{color:var(--acc)}
+.foot{color:var(--mut);font-size:.85rem;margin:14px 0 0;max-width:80ch}
+.foot a{color:var(--acc)}
+.via{font-size:.82rem;color:var(--mut);font-style:italic}
+.sr{position:absolute;left:-9999px}
+/*__BANNER_CSS__*/
+</style></head><body>
+<!--__BANNER__-->
+<main>
+<p id="live" class="sr" role="status"></p>
+<h1>__TITLE__</h1><p class="sub">Where does a WorkOS object live, and what does it belong to? Start at the team and go down. At every level you see what starts there and what stays around from above. To see the facts and the API, open its entry.</p>
+<div class="find"><label class="sr" for="q">Find a WorkOS object</label><input id="q" type="search" placeholder="Where is it? Try SSO, API key, membership" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="res"><ul id="res" role="listbox" aria-label="Matching objects" hidden></ul></div>
+<ol class="steps" id="steps" aria-label="Level"></ol>
+<div id="view"></div>
+<p class="foot" id="foot"></p>
+</main>
+<!--__FOOTER__-->
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent);
+const AT='../workos/index.html#';
+const NAV=D.levels.map(l=>l.id).concat('keys');
+const LV=Object.fromEntries(D.levels.map(l=>[l.id,l]));
+const O=Object.fromEntries(D.objects.concat(D.keys).map(o=>[o.id,o]));
+const kids=id=>D.levels.filter(l=>l.parent===id);
+const path=id=>{const p=[];for(let l=LV[id];l;l=LV[l.parent])p.unshift(l);return p};
+const under=(a,b)=>a!==b&&path(b).some(l=>l.id===a); // b sits under a
+const h=(tag,a,...kids)=>{const e=document.createElement(tag);for(const k in a||{}){if(k==='class')e.className=a[k];else e.setAttribute(k,a[k])}kids.flat().forEach(c=>e.append(c));return e};
+const key=k=>h('i',{class:'lg-'+k,'aria-hidden':'true'});
+const unc=o=>o.status!=='verified';
+const lab=id=>id==='keys'?'Keys':LV[id].label;
+let cur='team',sel=null;
+
+function srcLinks(o){return h('small',null,'Sources: ',...(o.src||[]).flatMap((k,i)=>[i?', ':'',h('a',{href:D.pages[k].url},D.pages[k].label)]))}
+function card(o,from){
+  const a=h('a',{class:'svc',href:AT+o.entry,'data-id':o.id},h('b',null,o.name),h('span',null,o.summary||o.use||''));
+  if(o.held)a.append(h('small',null,'Held by: '+o.held));
+  if(from)a.append(h('small',{class:'via'},'Owned at the '+lab(o.at).toLowerCase()+' level'));
+  if(unc(o))a.append(h('small',{class:'un'},'unconfirmed: '+o.note));
+  else if(o.note&&!from)a.append(h('small',null,o.note));
+  if(o.id===sel)a.classList.add('sel');
+  return a;
+}
+function band(kind,label,name,desc){
+  return h('section',{class:'band'+(kind==='cur'?' cur':''),'aria-labelledby':'b-'+kind},
+    h('span',{class:'kick'},label),h('h2',{id:'b-'+kind,tabindex:'-1'},name),desc?h('p',null,desc):[]);
+}
+function renderKeys(box){
+  const c=band('cur','You are in','Where is the key?','Four credentials look alike and sit at different levels. The first is yours to call WorkOS; the other three are what you give your customers to call you.');
+  c.append(h('h3',null,key('here'),'The four credentials'),h('ul',{class:'cards'},D.keys.map(k=>h('li',null,card(Object.assign({summary:k.use,at:k.level,note:k.note||''},k),true)))));
+  box.append(c);
+}
+function render(){
+  const box=document.getElementById('view');box.replaceChildren();
+  document.getElementById('steps').replaceChildren(...NAV.map(id=>h('li',null,h('button',Object.assign({type:'button','data-go':id},id===cur?{'aria-current':'step'}:{}),lab(id)))));
+  if(cur==='keys'){renderKeys(box);return fin(box)}
+  const L=LV[cur],par=L.parent;
+  if(par)box.append(h('p',{class:'upline'},'Level above: '+LV[par].label,h('button',{class:'up',type:'button','data-go':par},'Go up')));
+  const c=band('cur','You are in',L.label,L.description);
+  c.append(h('p',null,'Atlas entry: ',h('a',{href:AT+L.entry},L.label+' in the WorkOS topic')),srcLinks(L));
+  const ch=kids(cur);
+  if(ch.length)c.append(h('h3',null,'Contains'),h('p',null,ch.map(k=>k.label).join(' and ')+'.'),...ch.map(k=>h('button',{class:'go',type:'button','data-go':k.id},'Zoom in to '+k.label.toLowerCase()+' ',h('span',{'aria-hidden':'true'},'→'))));
+  const own=D.objects.filter(o=>o.at===cur);
+  c.append(h('h3',null,key('here'),'Starts at this level'),own.length?h('ul',{class:'cards'},own.map(o=>h('li',null,card(o)))):h('p',null,'Nothing new starts here.'));
+  const seen=D.objects.filter(o=>o.at!==cur&&o.also.includes(cur)),
+        link=seen.filter(o=>!under(o.at,cur)),above=seen.filter(o=>under(o.at,cur));
+  if(link.length)c.append(h('h3',null,key('res'),'Linked from here'),h('ul',{class:'cards'},link.map(o=>h('li',null,card(o,true)))));
+  if(above.length)c.append(h('h3',null,key('above'),'Around from a level above'),h('ul',{class:'row'},above.map(o=>h('li',null,h('a',{class:'pill'+(o.id===sel?' hit':''),href:AT+o.entry,title:o.summary},o.name+' ('+lab(o.at).toLowerCase()+')')))));
+  box.append(c);
+  for(const k of ch){
+    const b=band('dn','Level below',k.label,k.description),n=D.objects.filter(o=>o.at===k.id).map(o=>o.name);
+    if(n.length)b.append(h('p',null,'Starts there: '+n.join(', ')+'.'));
+    box.append(h('div',{class:'arrow','aria-hidden':'true'},'contains'),b);
+  }
+  fin(box);
+}
+function fin(box){const hit=box.querySelector('.svc.sel,.hit');if(hit)hit.scrollIntoView({block:'center'})}
+function go(level,id,focus){
+  cur=level;sel=id||null;
+  const hash='#'+level+(id?'/'+id:'');if(location.hash!==hash)history.pushState(null,'',hash);
+  render();announce(focus!==false);
+}
+function announce(focus){
+  document.getElementById('live').textContent=sel?O[sel].name+' is at the '+lab(cur).toLowerCase()+' level':'Showing the '+lab(cur).toLowerCase()+' level';
+  if(focus&&!sel){const t=document.getElementById('b-cur');if(t)t.focus({preventScroll:true})}
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b){go(b.dataset.go);window.scrollTo({top:0})}});
+function fromHash(moved){
+  const [l,id]=location.hash.slice(1).split('/');
+  cur=NAV.includes(l)?l:'team';sel=id&&O[id]?id:null;
+  if(l&&(cur!==l||id&&!sel))history.replaceState(null,'','#'+cur);
+  render();if(moved)announce(true);
+}
+addEventListener('hashchange',()=>fromHash(true));
+// search: where does it live? Objects, the credentials and the levels themselves.
+const ITEMS=D.objects.map(o=>({id:o.id,name:o.name,text:o.summary,at:o.at,o})).concat(
+  D.keys.map(k=>({id:k.id,name:k.name,text:k.use,at:'keys',o:k})),
+  D.levels.map(l=>({id:'level-'+l.id,name:l.label+' (level)',text:l.description,at:l.id,o:null,level:true})));
+const where=it=>it.at==='keys'?'credentials, lives at the '+lab(O[it.id].level).toLowerCase()+' level':path(it.at).map(l=>l.label.toLowerCase()).join(' > ')+(it.level?'':' > '+it.name);
+const q=document.getElementById('q'),res=document.getElementById('res'),live=document.getElementById('live');
+let hits=[],act=-1,t0;
+function say(m){clearTimeout(t0);t0=setTimeout(()=>live.textContent=m,400)}
+function close(){res.hidden=true;act=-1;q.setAttribute('aria-expanded','false');q.removeAttribute('aria-activedescendant')}
+function mark(i){
+  act=i;[...res.querySelectorAll('[role=option]')].forEach((li,k)=>li.setAttribute('aria-selected',k===i));
+  const li=res.querySelectorAll('[role=option]')[i];
+  if(li){q.setAttribute('aria-activedescendant',li.id);li.scrollIntoView({block:'nearest'})}else q.removeAttribute('aria-activedescendant');
+}
+// 0: the name starts with it, 1: in the name, 2: in the id or the text, 3: no match
+function rank(it,t){
+  const n=it.name.toLowerCase();
+  return n.startsWith(t)?0:n.includes(t)?1:(it.id+' '+it.text).toLowerCase().includes(t)?2:3;
+}
+function find(){
+  const t=q.value.trim().toLowerCase();res.replaceChildren();
+  if(!t){hits=[];close();say('');return}
+  const all=ITEMS.filter(i=>rank(i,t)<3).sort((a,b)=>rank(a,t)-rank(b,t));hits=all.slice(0,8);
+  hits.forEach((it,i)=>res.append(h('li',{role:'option',id:'o-'+i,'data-id':it.id,'aria-selected':'false'},h('span',null,it.name),h('small',null,where(it)+(it.o&&unc(it.o)?' (unconfirmed)':'')))));
+  if(!hits.length)res.append(h('li',{role:'presentation',class:'none'},'Nothing matches "'+q.value.trim()+'". Try a shorter word.'));
+  else if(all.length>hits.length)res.append(h('li',{role:'presentation',class:'none'},'+'+(all.length-hits.length)+' more: keep typing to narrow.'));
+  act=-1;q.removeAttribute('aria-activedescendant');res.hidden=false;q.setAttribute('aria-expanded','true');
+  say(hits.length?all.length+' matches':'No match');
+}
+function pick(it){
+  close();q.value='';go(it.at,it.level?null:it.id,false);
+  (document.querySelector('.svc.sel,.hit')||document.getElementById('b-cur')).focus({preventScroll:true});
+}
+q.addEventListener('input',find);
+q.addEventListener('focus',()=>{if(q.value.trim()&&res.hidden)find()});
+q.addEventListener('blur',close);
+q.addEventListener('keydown',e=>{
+  const n=hits.length;
+  if(e.key==='Escape'){if(!res.hidden)close();else q.value=''}
+  else if((e.key==='ArrowDown'||e.key==='ArrowUp')&&n){e.preventDefault();if(res.hidden)find();mark(e.key==='ArrowDown'?(act+1)%n:(act<=0?n-1:act-1))}
+  else if(e.key==='Enter'&&n&&!res.hidden){e.preventDefault();pick(hits[act<0?0:act])}
+});
+res.addEventListener('mousedown',e=>e.preventDefault());
+res.addEventListener('click',e=>{const li=e.target.closest('li[data-id]');if(li)pick(ITEMS.find(i=>i.id===li.dataset.id))});
+const n=D.objects.concat(D.keys).filter(unc).length;
+document.getElementById('foot').append('Levels are read from the WorkOS docs; '+n+' of '+(D.objects.length+D.keys.length)+' items are marked unconfirmed. '+D.basis+' ',h('a',{href:'../workos/index.html'},'WorkOS'),' holds the facts, the API and the sources.');
+fromHash();
+</script>
+</body></html>

@@ -1,6 +1,6 @@
 """Check that every topic has a spec (docs/spec.md) and that its coverage table agrees with the data.
 
-  spec.py            check every published topic, views/lenses/, views/explorer/, workstation/ and vscode/
+  spec.py            check every published topic, views/lenses/, views/explorer/, views/workos-explorer/, workstation/ and vscode/
   spec.py <dir>...   check these topic folders only
 
 The format is in docs/topic-spec.md. Errors: the spec is missing, a section is missing, a coverage row has an unknown status, a row marked
@@ -77,7 +77,7 @@ def check(folder):
 def folders():
     topics = json.loads((SITE / "topics.json").read_text(encoding="utf-8"))["topics"]
     out = [SITE / "topics" / t["id"] for t in topics if not t.get("draft")]
-    return out + [SITE / "views" / "lenses", SITE / "views" / "explorer", SITE / "workstation", SITE / "vscode"]
+    return out + [SITE / "views" / "lenses", SITE / "views" / "explorer", SITE / "views" / "workos-explorer", SITE / "workstation", SITE / "vscode"]
 
 
 def main(args):
