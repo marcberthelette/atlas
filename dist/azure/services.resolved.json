@@ -333,8 +333,8 @@
     "azapi": {
       "namespace": "Azure",
       "name": "azapi",
-      "latest_version": "2.13.0",
-      "changed_at": "2026-10-24",
+      "latest_version": "2.14.0",
+      "changed_at": "2026-11-17",
       "docs_url": "https://registry.terraform.io/providers/Azure/azapi/latest/docs"
     }
   },
@@ -388,8 +388,8 @@
         },
         {
           "url": "https://learn.microsoft.com/entra/fundamentals/licensing",
-          "page_date": "2026-06-18",
-          "published": "2026-07-28"
+          "page_date": "2026-10-07",
+          "published": "2026-11-17"
         }
       ],
       "review": {
@@ -398,7 +398,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-13"
+        "changed_at": "2026-11-17"
       },
       "terraform": {
         "status": "listed",
@@ -527,7 +527,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -721,7 +721,7 @@
         "note": "Gaps mean the API accepts the setting and the azurerm resource docs list no matching argument; the provider source was not checked. Management group placement is a separate resource (azurerm_management_group_subscription_association), so it is not a gap.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -807,7 +807,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.  Not compared against the API spec (spec path not found by the script). A resource group is name, location, tags and managed-by; unconfirmed.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -853,8 +853,8 @@
         },
         {
           "url": "https://learn.microsoft.com/entra/fundamentals/licensing",
-          "page_date": "2026-06-18",
-          "published": "2026-07-28"
+          "page_date": "2026-10-07",
+          "published": "2026-11-17"
         }
       ],
       "review": {
@@ -863,7 +863,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-13"
+        "changed_at": "2026-11-17"
       },
       "terraform": {
         "status": "listed",
@@ -963,8 +963,8 @@
         },
         {
           "url": "https://learn.microsoft.com/entra/fundamentals/licensing",
-          "page_date": "2026-06-18",
-          "published": "2026-07-28"
+          "page_date": "2026-10-07",
+          "published": "2026-11-17"
         }
       ],
       "review": {
@@ -973,7 +973,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-13"
+        "changed_at": "2026-11-17"
       },
       "terraform": {
         "status": "full",
@@ -1025,7 +1025,7 @@
         "note": "Role assignments and role definitions compared; every writable property has an azurerm argument.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -1072,8 +1072,8 @@
         },
         {
           "url": "https://learn.microsoft.com/entra/fundamentals/licensing",
-          "page_date": "2026-06-18",
-          "published": "2026-07-28"
+          "page_date": "2026-10-07",
+          "published": "2026-11-17"
         }
       ],
       "review": {
@@ -1082,7 +1082,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-13"
+        "changed_at": "2026-11-17"
       },
       "terraform": {
         "status": "full",
@@ -1129,7 +1129,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Federated credentials are azurerm_federated_identity_credential.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -1170,8 +1170,8 @@
       "docs": [
         {
           "url": "https://learn.microsoft.com/azure/key-vault/general/overview",
-          "page_date": "2026-09-22",
-          "published": "2026-10-06"
+          "page_date": "2026-11-06",
+          "published": "2026-11-17"
         },
         {
           "url": "https://learn.microsoft.com/azure/key-vault/general/rbac-guide",
@@ -1194,8 +1194,8 @@
         "note": "Purpose and the permission-model facts verified against Learn on 2026-10-24 (key-vault overview, rbac-guide, rbac-migration, rbac-access-policy). Relationships, Terraform coverage and cloud native rating are not verified."
       },
       "freshness": {
-        "status": "current",
-        "changed_at": "2026-10-24"
+        "status": "stale",
+        "changed_at": "2026-11-17"
       },
       "terraform": {
         "status": "full",
@@ -1276,7 +1276,7 @@
         "note": "End-user actions (backup, restore, purge, recover) are not configuration and are not counted. Two API-only vault fields have no azurerm argument: createMode (recover a soft-deleted vault, an end-user action) and enableSoftDelete (whether it can still be changed is unconfirmed). Private endpoint connections are configured through the Private Endpoint service.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -1400,7 +1400,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared the pricing plan; contacts, settings and automation are separate azurerm resources.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -1520,7 +1520,7 @@
         "note": "Gaps mean the API accepts the setting and the azurerm resource docs list no matching argument; the provider source was not checked. Only the subscription budget resource was compared.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -1610,7 +1610,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.  azurerm_advisor_suppression covers suppressions only. Not compared against the API spec.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -1813,7 +1813,7 @@
         "note": "Gaps mean the API accepts the setting and the azurerm resource docs list no matching argument; the provider source was not checked. Compared policy definitions and the subscription-scope assignment; whether the newer settings are generally available is unconfirmed.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -1936,7 +1936,7 @@
         "note": "Gaps mean the API accepts the setting and the azurerm resource docs list no matching argument; the provider source was not checked. Resource guard and customer-managed key for the Backup vault are covered by sibling resources (azurerm_data_protection_resource_guard, azurerm_recovery_services_vault_resource_guard_association, azurerm_data_protection_backup_vault_customer_managed_key), so they are not gaps.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -2082,7 +2082,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared azurerm_linux_virtual_machine against the API; the Windows resource and sibling resources (extensions, data disk attachments) were searched for matching arguments only.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -2211,7 +2211,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -2331,7 +2331,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared the Linux scale set resource; the Windows and orchestrated resources were searched for matching arguments only.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -2506,7 +2506,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared azurerm_linux_web_app and the service plan. Hosting-plan and site gaps are combined.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -2635,7 +2635,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared azurerm_linux_function_app. Flex Consumption has its own resource (azurerm_function_app_flex_consumption); the shared app settings gaps are the same as App Service.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -2785,7 +2785,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared the container app and the environment.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -2947,7 +2947,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared the cluster; node pools are azurerm_kubernetes_cluster_node_pool.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -3057,7 +3057,7 @@
         "note": "Gaps mean the API accepts the setting and the azurerm resource docs list no matching argument; the provider source was not checked. ",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -3163,7 +3163,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared the virtual network; subnets and peerings are separate azurerm resources.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -3276,7 +3276,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -3385,7 +3385,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Rules are a separate resource (azurerm_network_security_rule).",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -3496,7 +3496,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -3620,7 +3620,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Rules, probes and pools are separate azurerm resources.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -3759,7 +3759,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared Application Gateway and the Front Door profile (profile: no gaps found); Front Door routes, rules and origins were not compared.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -3886,7 +3886,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared DNS zones (API 2018-05-01) and Private DNS zones (API 2024-06-01, no gaps); record types are separate azurerm resources.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -3984,7 +3984,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Application security groups are covered by azurerm_private_endpoint_application_security_group_association.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -4156,7 +4156,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Encryption keys, network rules and static website are separate azurerm resources and count as covered.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -4311,7 +4311,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared the server and the database.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -4439,7 +4439,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -4565,7 +4565,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -4700,7 +4700,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.  Five gaps, including geo data replication: closest to partial.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -4817,7 +4817,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared custom topics only; system topics, domains and namespaces were not compared.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -4947,7 +4947,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared action groups only; alert rules, diagnostic settings and data collection rules were not compared.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -5051,7 +5051,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Data export, linked clusters and customer-managed keys are separate azurerm resources.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -5151,7 +5151,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }
@@ -5305,7 +5305,7 @@
         "note": "First pass, not reviewed. A gap means the API accepts the setting and no documented azurerm 5.11.0 argument (in any resource doc) was found; the provider source was not checked and general availability of newer settings is unconfirmed. Compared Grafana only; the Azure Monitor workspace (Prometheus) was not compared against the API.",
         "changed_at": "2026-10-24",
         "provider_versions": {
-          "azapi": "2.13.0",
+          "azapi": "2.14.0",
           "azurerm": "5.14.0"
         }
       }

@@ -184,8 +184,8 @@
     "azapi": {
       "namespace": "Azure",
       "name": "azapi",
-      "latest_version": "2.13.0",
-      "changed_at": "2026-10-24",
+      "latest_version": "2.14.0",
+      "changed_at": "2026-11-17",
       "docs_url": "https://registry.terraform.io/providers/Azure/azapi/latest/docs"
     }
   },
@@ -269,7 +269,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-13",
+        "changed_at": "2026-11-17",
         "sources": {
           "https://learn.microsoft.com/entra/fundamentals/how-to-find-tenant": {
             "changed_at": "2026-10-24",
@@ -289,10 +289,10 @@
           },
           "https://learn.microsoft.com/entra/fundamentals/licensing": {
             "http_status": 200,
-            "ms_date": "2026-06-18T00:00:00Z",
-            "updated_at": "2026-07-28T07:37:00Z",
-            "latest_hash": "sha256:1ebea0776c07083847b96763f502259d9f5925b8ac0ad6491417b1ec0422df40",
-            "changed_at": "2026-11-13",
+            "ms_date": "2026-10-07T00:00:00Z",
+            "updated_at": "2026-11-17T08:34:00Z",
+            "latest_hash": "sha256:8549d50ab2bdf4999e9d371bab4f35d6554c88c099f221bf1ac9618bfe007ae0",
+            "changed_at": "2026-11-17",
             "reviewed_hash": "sha256:e762247b342233d6707e4583038cfa85ff116f463784ec880918dc1888d75400"
           }
         }
@@ -794,7 +794,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-13",
+        "changed_at": "2026-11-17",
         "sources": {
           "https://learn.microsoft.com/entra/fundamentals/whatis": {
             "changed_at": "2026-10-24",
@@ -806,10 +806,10 @@
           },
           "https://learn.microsoft.com/entra/fundamentals/licensing": {
             "http_status": 200,
-            "ms_date": "2026-06-18T00:00:00Z",
-            "updated_at": "2026-07-28T07:37:00Z",
-            "latest_hash": "sha256:1ebea0776c07083847b96763f502259d9f5925b8ac0ad6491417b1ec0422df40",
-            "changed_at": "2026-11-13",
+            "ms_date": "2026-10-07T00:00:00Z",
+            "updated_at": "2026-11-17T08:34:00Z",
+            "latest_hash": "sha256:8549d50ab2bdf4999e9d371bab4f35d6554c88c099f221bf1ac9618bfe007ae0",
+            "changed_at": "2026-11-17",
             "reviewed_hash": "sha256:e762247b342233d6707e4583038cfa85ff116f463784ec880918dc1888d75400"
           }
         }
@@ -918,7 +918,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-13",
+        "changed_at": "2026-11-17",
         "sources": {
           "https://learn.microsoft.com/azure/role-based-access-control/overview": {
             "changed_at": "2026-10-24",
@@ -930,10 +930,10 @@
           },
           "https://learn.microsoft.com/entra/fundamentals/licensing": {
             "http_status": 200,
-            "ms_date": "2026-06-18T00:00:00Z",
-            "updated_at": "2026-07-28T07:37:00Z",
-            "latest_hash": "sha256:1ebea0776c07083847b96763f502259d9f5925b8ac0ad6491417b1ec0422df40",
-            "changed_at": "2026-11-13",
+            "ms_date": "2026-10-07T00:00:00Z",
+            "updated_at": "2026-11-17T08:34:00Z",
+            "latest_hash": "sha256:8549d50ab2bdf4999e9d371bab4f35d6554c88c099f221bf1ac9618bfe007ae0",
+            "changed_at": "2026-11-17",
             "reviewed_hash": "sha256:e762247b342233d6707e4583038cfa85ff116f463784ec880918dc1888d75400"
           }
         }
@@ -1030,7 +1030,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-13",
+        "changed_at": "2026-11-17",
         "sources": {
           "https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview": {
             "changed_at": "2026-10-24",
@@ -1042,10 +1042,10 @@
           },
           "https://learn.microsoft.com/entra/fundamentals/licensing": {
             "http_status": 200,
-            "ms_date": "2026-06-18T00:00:00Z",
-            "updated_at": "2026-07-28T07:37:00Z",
-            "latest_hash": "sha256:1ebea0776c07083847b96763f502259d9f5925b8ac0ad6491417b1ec0422df40",
-            "changed_at": "2026-11-13",
+            "ms_date": "2026-10-07T00:00:00Z",
+            "updated_at": "2026-11-17T08:34:00Z",
+            "latest_hash": "sha256:8549d50ab2bdf4999e9d371bab4f35d6554c88c099f221bf1ac9618bfe007ae0",
+            "changed_at": "2026-11-17",
             "reviewed_hash": "sha256:e762247b342233d6707e4583038cfa85ff116f463784ec880918dc1888d75400"
           }
         }
@@ -1184,15 +1184,15 @@
         "note": "Purpose and the permission-model facts verified against Learn on 2026-10-24 (key-vault overview, rbac-guide, rbac-migration, rbac-access-policy). Relationships, Terraform coverage and cloud native rating are not verified."
       },
       "freshness": {
-        "status": "current",
-        "changed_at": "2026-10-24",
+        "status": "stale",
+        "changed_at": "2026-11-17",
         "sources": {
           "https://learn.microsoft.com/azure/key-vault/general/overview": {
-            "changed_at": "2026-10-24",
+            "changed_at": "2026-11-17",
             "http_status": 200,
-            "ms_date": "2026-09-22T00:00:00Z",
-            "updated_at": "2026-10-06T17:34:00Z",
-            "latest_hash": "sha256:00f909db6d10c669c7e4b34e0e22c670613a7114eeff95fe986802b393847c31",
+            "ms_date": "2026-11-06T00:00:00Z",
+            "updated_at": "2026-11-17T00:41:00Z",
+            "latest_hash": "sha256:078213be5a6e01dfafa516aab67a7976ef4c6b51ed8843ff95465d985687996b",
             "reviewed_hash": "sha256:00f909db6d10c669c7e4b34e0e22c670613a7114eeff95fe986802b393847c31"
           },
           "https://learn.microsoft.com/azure/key-vault/general/rbac-guide": {
