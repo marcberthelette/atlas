@@ -1470,15 +1470,15 @@
         "note": "Verified against Learn on 2026-10-24 (cost-management-billing/costs/overview-cost-management): purpose, scopes, features. Not verified: nothing known; Management groups are not supported for some Microsoft Customer Agreement subscriptions (per the management groups page), worth a fact later."
       },
       "freshness": {
-        "status": "current",
-        "changed_at": "2026-10-24",
+        "status": "stale",
+        "changed_at": "2026-11-18",
         "sources": {
           "https://learn.microsoft.com/azure/cost-management-billing/costs/overview-cost-management": {
-            "changed_at": "2026-10-24",
+            "changed_at": "2026-11-18",
             "http_status": 200,
             "ms_date": "2025-06-27T00:00:00Z",
-            "updated_at": "2026-05-14T22:12:00Z",
-            "latest_hash": "sha256:33adeb18efc3f23a6fcaf4b1c16bb778b83eeffea5d59dd42b6c1e9b1f17bf60",
+            "updated_at": "2026-11-17T19:39:00Z",
+            "latest_hash": "sha256:4d7c9e4717fd558e69ef263d9c146b54ad98a3e582d3c65a7132b2c8989f0dfc",
             "reviewed_hash": "sha256:33adeb18efc3f23a6fcaf4b1c16bb778b83eeffea5d59dd42b6c1e9b1f17bf60"
           }
         }
@@ -2521,14 +2521,14 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-07",
+        "changed_at": "2026-11-18",
         "sources": {
           "https://learn.microsoft.com/azure/app-service/overview": {
-            "changed_at": "2026-10-24",
+            "changed_at": "2026-11-18",
             "http_status": 200,
             "ms_date": "2026-08-18T00:00:00Z",
-            "updated_at": "2026-08-18T22:40:00Z",
-            "latest_hash": "sha256:7ebf4eb2d21dfe3b0789d44f7a6fc3aabb1b8a326a56f276ac104f9f572e66c3",
+            "updated_at": "2026-11-17T19:39:00Z",
+            "latest_hash": "sha256:a384761f4e2f4e71adbde3cb75e55422553fabc3e78e0eaa5949ff79ce0bcc6f",
             "reviewed_hash": "sha256:7ebf4eb2d21dfe3b0789d44f7a6fc3aabb1b8a326a56f276ac104f9f572e66c3"
           },
           "https://learn.microsoft.com/azure/app-service/overview-hosting-plans": {
@@ -2663,7 +2663,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-10",
+        "changed_at": "2026-11-18",
         "sources": {
           "https://learn.microsoft.com/azure/azure-functions/functions-overview": {
             "changed_at": "2026-10-24",
@@ -2675,10 +2675,10 @@
           },
           "https://learn.microsoft.com/azure/azure-functions/flex-consumption-plan": {
             "http_status": 200,
-            "ms_date": "2026-10-30T00:00:00Z",
-            "updated_at": "2026-11-09T23:13:00Z",
-            "latest_hash": "sha256:f41b7f1707a6c1dd636338cc76a83b4e18d2ce1853b338ce03f8091679e1e10b",
-            "changed_at": "2026-11-10",
+            "ms_date": "2026-11-09T00:00:00Z",
+            "updated_at": "2026-11-17T19:39:00Z",
+            "latest_hash": "sha256:1bbf11a46fec522a5eb62280494b0f451019172cecc252a61b49f36150a842d5",
+            "changed_at": "2026-11-18",
             "reviewed_hash": "sha256:5f3807aa79654ceb1c540cc090baf146700afa81ff86b7dc3c9eb4dcd29c85bb"
           }
         }
@@ -4310,8 +4310,8 @@
         "note": "Verified against Learn on 2026-10-24 (storage-account-overview): purpose, account types, redundancy, the Azure Files and Data Lake edges. Not verified: 'common uses' (Terraform state, boot diagnostics, Functions state, logs), the hierarchical-namespace detail, and the RBAC, managed identity, Key Vault, VM, Functions, Event Grid, Log Analytics, Data Factory and Azure DevOps edges."
       },
       "freshness": {
-        "status": "current",
-        "changed_at": "2026-10-26",
+        "status": "stale",
+        "changed_at": "2026-11-18",
         "sources": {
           "https://learn.microsoft.com/azure/storage/common/storage-account-overview": {
             "changed_at": "2026-10-24",
@@ -4323,10 +4323,10 @@
           },
           "https://learn.microsoft.com/azure/storage/common/storage-plan-manage-costs": {
             "http_status": 200,
-            "ms_date": "2025-10-01T00:00:00Z",
-            "updated_at": "2026-08-25T02:03:00Z",
-            "latest_hash": "sha256:6530452b7c4bea0e6ce5fde311f1cf0824dcc34f72eab85c572fff5f541480af",
-            "changed_at": "2026-10-26",
+            "ms_date": "2026-11-03T00:00:00Z",
+            "updated_at": "2026-11-17T19:39:00Z",
+            "latest_hash": "sha256:756ee15949501680908f27fe0cac6a0f4329451cf0bca11a5aefd1005c9b150a",
+            "changed_at": "2026-11-18",
             "reviewed_hash": "sha256:6530452b7c4bea0e6ce5fde311f1cf0824dcc34f72eab85c572fff5f541480af"
           }
         }
@@ -4623,15 +4623,15 @@
         "note": "Verified against Learn on 2026-10-24 (postgresql/flexible-server/overview): purpose, facts, the VNet edge. Not verified: the delegated-subnet detail and the Log Analytics edge."
       },
       "freshness": {
-        "status": "current",
-        "changed_at": "2026-10-24",
+        "status": "stale",
+        "changed_at": "2026-11-18",
         "sources": {
           "https://learn.microsoft.com/azure/postgresql/flexible-server/overview": {
-            "changed_at": "2026-10-24",
+            "changed_at": "2026-11-18",
             "http_status": 200,
             "ms_date": "2026-01-09T00:00:00Z",
-            "updated_at": "2026-09-05T06:06:00Z",
-            "latest_hash": "sha256:844e50c5f134168ca048bc2c2c056dc853c3d405c60d2f219c382c7fac2532ed",
+            "updated_at": "2026-11-18T07:10:00Z",
+            "latest_hash": "sha256:91b932dcc7dcca50a0477c2feefef0e4552c3865ebc718a4772c051db2b9954d",
             "reviewed_hash": "sha256:844e50c5f134168ca048bc2c2c056dc853c3d405c60d2f219c382c7fac2532ed"
           }
         }
