@@ -269,7 +269,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-17",
+        "changed_at": "2026-11-19",
         "sources": {
           "https://learn.microsoft.com/entra/fundamentals/how-to-find-tenant": {
             "changed_at": "2026-10-24",
@@ -291,8 +291,8 @@
             "http_status": 200,
             "ms_date": "2026-10-07T00:00:00Z",
             "updated_at": "2026-11-17T08:34:00Z",
-            "latest_hash": "sha256:8549d50ab2bdf4999e9d371bab4f35d6554c88c099f221bf1ac9618bfe007ae0",
-            "changed_at": "2026-11-17",
+            "latest_hash": "sha256:e404e9b1bca5ff9a26561c5bd440e007d84e6d92174802fc7610ccd8a86677d8",
+            "changed_at": "2026-11-19",
             "reviewed_hash": "sha256:e762247b342233d6707e4583038cfa85ff116f463784ec880918dc1888d75400"
           }
         }
@@ -794,7 +794,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-17",
+        "changed_at": "2026-11-19",
         "sources": {
           "https://learn.microsoft.com/entra/fundamentals/whatis": {
             "changed_at": "2026-10-24",
@@ -808,8 +808,8 @@
             "http_status": 200,
             "ms_date": "2026-10-07T00:00:00Z",
             "updated_at": "2026-11-17T08:34:00Z",
-            "latest_hash": "sha256:8549d50ab2bdf4999e9d371bab4f35d6554c88c099f221bf1ac9618bfe007ae0",
-            "changed_at": "2026-11-17",
+            "latest_hash": "sha256:e404e9b1bca5ff9a26561c5bd440e007d84e6d92174802fc7610ccd8a86677d8",
+            "changed_at": "2026-11-19",
             "reviewed_hash": "sha256:e762247b342233d6707e4583038cfa85ff116f463784ec880918dc1888d75400"
           }
         }
@@ -918,7 +918,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-17",
+        "changed_at": "2026-11-19",
         "sources": {
           "https://learn.microsoft.com/azure/role-based-access-control/overview": {
             "changed_at": "2026-10-24",
@@ -932,8 +932,8 @@
             "http_status": 200,
             "ms_date": "2026-10-07T00:00:00Z",
             "updated_at": "2026-11-17T08:34:00Z",
-            "latest_hash": "sha256:8549d50ab2bdf4999e9d371bab4f35d6554c88c099f221bf1ac9618bfe007ae0",
-            "changed_at": "2026-11-17",
+            "latest_hash": "sha256:e404e9b1bca5ff9a26561c5bd440e007d84e6d92174802fc7610ccd8a86677d8",
+            "changed_at": "2026-11-19",
             "reviewed_hash": "sha256:e762247b342233d6707e4583038cfa85ff116f463784ec880918dc1888d75400"
           }
         }
@@ -1030,7 +1030,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-17",
+        "changed_at": "2026-11-19",
         "sources": {
           "https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview": {
             "changed_at": "2026-10-24",
@@ -1044,8 +1044,8 @@
             "http_status": 200,
             "ms_date": "2026-10-07T00:00:00Z",
             "updated_at": "2026-11-17T08:34:00Z",
-            "latest_hash": "sha256:8549d50ab2bdf4999e9d371bab4f35d6554c88c099f221bf1ac9618bfe007ae0",
-            "changed_at": "2026-11-17",
+            "latest_hash": "sha256:e404e9b1bca5ff9a26561c5bd440e007d84e6d92174802fc7610ccd8a86677d8",
+            "changed_at": "2026-11-19",
             "reviewed_hash": "sha256:e762247b342233d6707e4583038cfa85ff116f463784ec880918dc1888d75400"
           }
         }
@@ -4479,7 +4479,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-12",
+        "changed_at": "2026-11-19",
         "sources": {
           "https://learn.microsoft.com/azure/azure-sql/database/sql-database-paas-overview": {
             "changed_at": "2026-10-24",
@@ -4492,9 +4492,9 @@
           "https://learn.microsoft.com/azure/azure-sql/database/free-offer": {
             "http_status": 200,
             "ms_date": "2026-10-30T00:00:00Z",
-            "updated_at": "2026-11-11T18:38:00Z",
-            "latest_hash": "sha256:3898cb19c27a81024bca45b3e41ab8df0aeb2590232455781994eb73de590e07",
-            "changed_at": "2026-11-12",
+            "updated_at": "2026-11-18T23:32:00Z",
+            "latest_hash": "sha256:d29e7c9459a3f1b39ea956084e1c8237078c6e7b967100ec00583de601c67e79",
+            "changed_at": "2026-11-19",
             "reviewed_hash": "sha256:06ff9b88c85779257b7372a5f0de005464d7dd1996d8e5e4f1c4683e3b2fbd6c"
           }
         }

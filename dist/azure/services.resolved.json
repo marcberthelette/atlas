@@ -398,7 +398,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-17"
+        "changed_at": "2026-11-19"
       },
       "terraform": {
         "status": "listed",
@@ -863,7 +863,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-17"
+        "changed_at": "2026-11-19"
       },
       "terraform": {
         "status": "listed",
@@ -973,7 +973,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-17"
+        "changed_at": "2026-11-19"
       },
       "terraform": {
         "status": "full",
@@ -1082,7 +1082,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-17"
+        "changed_at": "2026-11-19"
       },
       "terraform": {
         "status": "full",
@@ -4205,7 +4205,7 @@
         {
           "url": "https://learn.microsoft.com/azure/azure-sql/database/free-offer",
           "page_date": "2026-10-30",
-          "published": "2026-11-11"
+          "published": "2026-11-18"
         }
       ],
       "review": {
@@ -4214,7 +4214,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-12"
+        "changed_at": "2026-11-19"
       },
       "terraform": {
         "status": "full",
