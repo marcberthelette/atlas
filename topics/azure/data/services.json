@@ -474,15 +474,15 @@
         "note": "Verified against Learn on 2026-10-24 (arm/overview, resource-providers-and-types): purpose, request flow, role assignments as extension resources, resource provider registration, the RBAC edge. Not verified: the Terraform and Bicep facts, 'evaluates Azure Policy', and the Policy and Azure DevOps edges."
       },
       "freshness": {
-        "status": "current",
-        "changed_at": "2026-10-24",
+        "status": "stale",
+        "changed_at": "2026-11-20",
         "sources": {
           "https://learn.microsoft.com/azure/azure-resource-manager/management/overview": {
-            "changed_at": "2026-10-24",
+            "changed_at": "2026-11-20",
             "http_status": 200,
             "ms_date": "2026-08-04T00:00:00Z",
-            "updated_at": "2026-08-06T22:11:00Z",
-            "latest_hash": "sha256:dd7c41c16e8cb01e4e6f0a40daf5e715d1aff3487af576b1f7bc7ea4af6251ee",
+            "updated_at": "2026-11-20T06:10:00Z",
+            "latest_hash": "sha256:c5b0cb6ec0e71dc2624749eb6617d1e6959f0398b80d99fe041f8ab995d42baf",
             "reviewed_hash": "sha256:dd7c41c16e8cb01e4e6f0a40daf5e715d1aff3487af576b1f7bc7ea4af6251ee"
           },
           "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-providers-and-types": {
@@ -2663,7 +2663,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-18",
+        "changed_at": "2026-11-20",
         "sources": {
           "https://learn.microsoft.com/azure/azure-functions/functions-overview": {
             "changed_at": "2026-10-24",
@@ -2675,10 +2675,10 @@
           },
           "https://learn.microsoft.com/azure/azure-functions/flex-consumption-plan": {
             "http_status": 200,
-            "ms_date": "2026-11-09T00:00:00Z",
-            "updated_at": "2026-11-17T19:39:00Z",
-            "latest_hash": "sha256:1bbf11a46fec522a5eb62280494b0f451019172cecc252a61b49f36150a842d5",
-            "changed_at": "2026-11-18",
+            "ms_date": "2026-11-17T00:00:00Z",
+            "updated_at": "2026-11-19T18:12:00Z",
+            "latest_hash": "sha256:70571489519868ff95daa84cb8008d2d09a66a68229d1bf24a2781db793789f9",
+            "changed_at": "2026-11-20",
             "reviewed_hash": "sha256:5f3807aa79654ceb1c540cc090baf146700afa81ff86b7dc3c9eb4dcd29c85bb"
           }
         }

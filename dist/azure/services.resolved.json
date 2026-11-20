@@ -578,7 +578,7 @@
         {
           "url": "https://learn.microsoft.com/azure/azure-resource-manager/management/overview",
           "page_date": "2026-08-04",
-          "published": "2026-08-06"
+          "published": "2026-11-20"
         },
         {
           "url": "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-providers-and-types",
@@ -591,8 +591,8 @@
         "note": "Verified against Learn on 2026-10-24 (arm/overview, resource-providers-and-types): purpose, request flow, role assignments as extension resources, resource provider registration, the RBAC edge. Not verified: the Terraform and Bicep facts, 'evaluates Azure Policy', and the Policy and Azure DevOps edges."
       },
       "freshness": {
-        "status": "current",
-        "changed_at": "2026-10-24"
+        "status": "stale",
+        "changed_at": "2026-11-20"
       },
       "terraform": {
         "status": "full",
@@ -2553,8 +2553,8 @@
         },
         {
           "url": "https://learn.microsoft.com/azure/azure-functions/flex-consumption-plan",
-          "page_date": "2026-11-09",
-          "published": "2026-11-17"
+          "page_date": "2026-11-17",
+          "published": "2026-11-19"
         }
       ],
       "review": {
@@ -2563,7 +2563,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-18"
+        "changed_at": "2026-11-20"
       },
       "terraform": {
         "status": "full",
