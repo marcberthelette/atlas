@@ -2206,13 +2206,13 @@
       },
       "freshness": {
         "status": "current",
-        "changed_at": "2026-10-24",
+        "changed_at": "2026-11-21",
         "sources": {
           "https://learn.microsoft.com/azure/virtual-machines/managed-disks-overview": {
-            "changed_at": "2026-10-24",
+            "changed_at": "2026-11-21",
             "http_status": 200,
             "ms_date": "2026-08-20T00:00:00Z",
-            "updated_at": "2026-08-20T22:03:00Z",
+            "updated_at": "2026-11-20T23:05:00Z",
             "latest_hash": "sha256:b6ce3699d95260176cc6a28bcc8ec25ea2874e4224c2557766d08e75edcafc28",
             "reviewed_hash": "sha256:b6ce3699d95260176cc6a28bcc8ec25ea2874e4224c2557766d08e75edcafc28"
           }
@@ -2337,13 +2337,13 @@
       },
       "freshness": {
         "status": "current",
-        "changed_at": "2026-10-24",
+        "changed_at": "2026-11-21",
         "sources": {
           "https://learn.microsoft.com/azure/virtual-machine-scale-sets/overview": {
-            "changed_at": "2026-10-24",
+            "changed_at": "2026-11-21",
             "http_status": 200,
             "ms_date": "2026-05-19T00:00:00Z",
-            "updated_at": "2026-06-24T06:10:00Z",
+            "updated_at": "2026-11-20T23:05:00Z",
             "latest_hash": "sha256:d4e2f76b787b88420e639ffe274f01beef73fccde9482118defed1da9ad532bc",
             "reviewed_hash": "sha256:d4e2f76b787b88420e639ffe274f01beef73fccde9482118defed1da9ad532bc"
           }
@@ -4020,7 +4020,7 @@
       },
       "freshness": {
         "status": "current",
-        "changed_at": "2026-10-24",
+        "changed_at": "2026-11-21",
         "sources": {
           "https://learn.microsoft.com/azure/dns/dns-overview": {
             "changed_at": "2026-10-24",
@@ -4031,10 +4031,10 @@
             "reviewed_hash": "sha256:1975c6b96fd070aca615fe46a526da17981bddbad8dd98346069789b16479b26"
           },
           "https://learn.microsoft.com/azure/dns/private-dns-overview": {
-            "changed_at": "2026-10-24",
+            "changed_at": "2026-11-21",
             "http_status": 200,
             "ms_date": "2025-12-16T00:00:00Z",
-            "updated_at": "2026-10-01T17:22:00Z",
+            "updated_at": "2026-11-20T23:21:00Z",
             "latest_hash": "sha256:2d729aa73f94dc7efe4cf0d1fb18e33f91cbda27e672ada52a3cad948466f783",
             "reviewed_hash": "sha256:2d729aa73f94dc7efe4cf0d1fb18e33f91cbda27e672ada52a3cad948466f783"
           }
@@ -4752,15 +4752,15 @@
         "note": "Verified against Learn on 2026-10-24 (cosmos-db/introduction): purpose (vector database added), facts. Not verified: the Log Analytics edge."
       },
       "freshness": {
-        "status": "current",
-        "changed_at": "2026-10-26",
+        "status": "stale",
+        "changed_at": "2026-11-21",
         "sources": {
           "https://learn.microsoft.com/azure/cosmos-db/introduction": {
-            "changed_at": "2026-10-24",
+            "changed_at": "2026-11-21",
             "http_status": 200,
             "ms_date": "2026-06-08T00:00:00Z",
-            "updated_at": "2026-06-15T22:16:00Z",
-            "latest_hash": "sha256:a3591170c564b26138fcf1e9476dee30e40342c7e581474accecd71d504f2bb3",
+            "updated_at": "2026-11-20T22:05:00Z",
+            "latest_hash": "sha256:ebb1726711a89815ab40cf4913687365a81b593f44ad0708d8fcee5a0f7d659d",
             "reviewed_hash": "sha256:a3591170c564b26138fcf1e9476dee30e40342c7e581474accecd71d504f2bb3"
           },
           "https://learn.microsoft.com/azure/cosmos-db/free-tier": {

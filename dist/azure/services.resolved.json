@@ -2126,7 +2126,7 @@
         {
           "url": "https://learn.microsoft.com/azure/virtual-machines/managed-disks-overview",
           "page_date": "2026-08-20",
-          "published": "2026-08-20"
+          "published": "2026-11-20"
         }
       ],
       "review": {
@@ -2135,7 +2135,7 @@
       },
       "freshness": {
         "status": "current",
-        "changed_at": "2026-10-24"
+        "changed_at": "2026-11-21"
       },
       "terraform": {
         "status": "full",
@@ -2254,7 +2254,7 @@
         {
           "url": "https://learn.microsoft.com/azure/virtual-machine-scale-sets/overview",
           "page_date": "2026-05-19",
-          "published": "2026-06-24"
+          "published": "2026-11-20"
         }
       ],
       "review": {
@@ -2263,7 +2263,7 @@
       },
       "freshness": {
         "status": "current",
-        "changed_at": "2026-10-24"
+        "changed_at": "2026-11-21"
       },
       "terraform": {
         "status": "full",
@@ -3804,7 +3804,7 @@
         {
           "url": "https://learn.microsoft.com/azure/dns/private-dns-overview",
           "page_date": "2025-12-16",
-          "published": "2026-10-01"
+          "published": "2026-11-20"
         }
       ],
       "review": {
@@ -3813,7 +3813,7 @@
       },
       "freshness": {
         "status": "current",
-        "changed_at": "2026-10-24"
+        "changed_at": "2026-11-21"
       },
       "terraform": {
         "status": "full",
@@ -4483,7 +4483,7 @@
         {
           "url": "https://learn.microsoft.com/azure/cosmos-db/introduction",
           "page_date": "2026-06-08",
-          "published": "2026-06-15"
+          "published": "2026-11-20"
         },
         {
           "url": "https://learn.microsoft.com/azure/cosmos-db/free-tier",
@@ -4496,8 +4496,8 @@
         "note": "Verified against Learn on 2026-10-24 (cosmos-db/introduction): purpose (vector database added), facts. Not verified: the Log Analytics edge."
       },
       "freshness": {
-        "status": "current",
-        "changed_at": "2026-10-26"
+        "status": "stale",
+        "changed_at": "2026-11-21"
       },
       "terraform": {
         "status": "full",
