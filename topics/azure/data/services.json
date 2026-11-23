@@ -4624,14 +4624,14 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-18",
+        "changed_at": "2026-11-23",
         "sources": {
           "https://learn.microsoft.com/azure/postgresql/flexible-server/overview": {
-            "changed_at": "2026-11-18",
+            "changed_at": "2026-11-23",
             "http_status": 200,
             "ms_date": "2026-01-09T00:00:00Z",
             "updated_at": "2026-11-18T07:10:00Z",
-            "latest_hash": "sha256:91b932dcc7dcca50a0477c2feefef0e4552c3865ebc718a4772c051db2b9954d",
+            "latest_hash": "sha256:33cde9f2d6897da72265c22d80449fec84ed60dd58474180161c8395eb6de9a3",
             "reviewed_hash": "sha256:844e50c5f134168ca048bc2c2c056dc853c3d405c60d2f219c382c7fac2532ed"
           }
         }
