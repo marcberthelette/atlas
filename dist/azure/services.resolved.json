@@ -959,7 +959,7 @@
         {
           "url": "https://learn.microsoft.com/azure/role-based-access-control/overview",
           "page_date": "2024-03-12",
-          "published": "2025-10-15"
+          "published": "2026-11-25"
         },
         {
           "url": "https://learn.microsoft.com/entra/fundamentals/licensing",
@@ -973,7 +973,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-19"
+        "changed_at": "2026-11-25"
       },
       "terraform": {
         "status": "full",
@@ -2375,12 +2375,12 @@
         {
           "url": "https://learn.microsoft.com/azure/app-service/overview",
           "page_date": "2026-08-18",
-          "published": "2026-11-17"
+          "published": "2026-11-25"
         },
         {
           "url": "https://learn.microsoft.com/azure/app-service/overview-hosting-plans",
           "page_date": "2026-11-06",
-          "published": "2026-11-06"
+          "published": "2026-11-25"
         }
       ],
       "review": {
@@ -2389,7 +2389,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-18"
+        "changed_at": "2026-11-25"
       },
       "terraform": {
         "status": "full",
@@ -3665,7 +3665,7 @@
         {
           "url": "https://learn.microsoft.com/azure/frontdoor/front-door-overview",
           "page_date": "2026-08-28",
-          "published": "2026-09-01"
+          "published": "2026-11-25"
         }
       ],
       "review": {
@@ -3674,7 +3674,7 @@
       },
       "freshness": {
         "status": "current",
-        "changed_at": "2026-10-24"
+        "changed_at": "2026-11-25"
       },
       "terraform": {
         "status": "full",
@@ -3927,7 +3927,7 @@
         {
           "url": "https://learn.microsoft.com/azure/private-link/private-endpoint-overview",
           "page_date": "2026-08-11",
-          "published": "2026-08-11"
+          "published": "2026-11-25"
         }
       ],
       "review": {
@@ -3935,8 +3935,8 @@
         "note": "Verified against Learn on 2026-10-24 (private-link/private-endpoint-overview): purpose, approval, the subnet and Private Link edges, and all eight service edges (each appears in the page's supported-services table). Not verified: 'needs a private DNS zone' as stated, and the DNS edge."
       },
       "freshness": {
-        "status": "current",
-        "changed_at": "2026-10-24"
+        "status": "stale",
+        "changed_at": "2026-11-25"
       },
       "terraform": {
         "status": "full",
