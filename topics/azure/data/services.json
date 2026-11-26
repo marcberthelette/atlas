@@ -918,13 +918,13 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-25",
+        "changed_at": "2026-11-26",
         "sources": {
           "https://learn.microsoft.com/azure/role-based-access-control/overview": {
-            "changed_at": "2026-11-25",
+            "changed_at": "2026-11-26",
             "http_status": 200,
             "ms_date": "2024-03-12T00:00:00Z",
-            "updated_at": "2026-11-25T06:12:00Z",
+            "updated_at": "2026-11-26T06:13:00Z",
             "latest_hash": "sha256:911caf54e528a1067789705b4c3f78bb96c75e8bc49ba300659d046fc5dc82da",
             "reviewed_hash": "sha256:911caf54e528a1067789705b4c3f78bb96c75e8bc49ba300659d046fc5dc82da"
           },
@@ -3880,7 +3880,7 @@
       },
       "freshness": {
         "status": "current",
-        "changed_at": "2026-11-25",
+        "changed_at": "2026-11-26",
         "sources": {
           "https://learn.microsoft.com/azure/application-gateway/overview": {
             "changed_at": "2026-10-24",
@@ -3891,10 +3891,10 @@
             "reviewed_hash": "sha256:9a19a9ec6f0185470eec31cf7bdb03984e69a77410f82d5508baed8cf1ecd298"
           },
           "https://learn.microsoft.com/azure/frontdoor/front-door-overview": {
-            "changed_at": "2026-11-25",
+            "changed_at": "2026-11-26",
             "http_status": 200,
             "ms_date": "2026-08-28T00:00:00Z",
-            "updated_at": "2026-11-25T06:12:00Z",
+            "updated_at": "2026-11-26T06:13:00Z",
             "latest_hash": "sha256:e0ea0e3d34937901a2b8ca918fb590b3340827d6fe5fcf0c47d327a0638d6c76",
             "reviewed_hash": "sha256:e0ea0e3d34937901a2b8ca918fb590b3340827d6fe5fcf0c47d327a0638d6c76"
           }
@@ -4129,14 +4129,14 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-25",
+        "changed_at": "2026-11-26",
         "sources": {
           "https://learn.microsoft.com/azure/private-link/private-endpoint-overview": {
-            "changed_at": "2026-11-25",
+            "changed_at": "2026-11-26",
             "http_status": 200,
             "ms_date": "2026-08-11T00:00:00Z",
-            "updated_at": "2026-11-25T06:12:00Z",
-            "latest_hash": "sha256:cc85ae6100fdfeb779a3ebf169519b8b5140b5b5854586fd05824432179f94a2",
+            "updated_at": "2026-11-25T23:11:00Z",
+            "latest_hash": "sha256:71aed0147f6c3458c4bdc6f6cd30f25fad00f07d91332b52de8b886373861b74",
             "reviewed_hash": "sha256:800962ac91b74c805724e9385eca9c08a234683d91a6450484711b7e126852f0"
           }
         }

@@ -959,7 +959,7 @@
         {
           "url": "https://learn.microsoft.com/azure/role-based-access-control/overview",
           "page_date": "2024-03-12",
-          "published": "2026-11-25"
+          "published": "2026-11-26"
         },
         {
           "url": "https://learn.microsoft.com/entra/fundamentals/licensing",
@@ -973,7 +973,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-25"
+        "changed_at": "2026-11-26"
       },
       "terraform": {
         "status": "full",
@@ -3665,7 +3665,7 @@
         {
           "url": "https://learn.microsoft.com/azure/frontdoor/front-door-overview",
           "page_date": "2026-08-28",
-          "published": "2026-11-25"
+          "published": "2026-11-26"
         }
       ],
       "review": {
@@ -3674,7 +3674,7 @@
       },
       "freshness": {
         "status": "current",
-        "changed_at": "2026-11-25"
+        "changed_at": "2026-11-26"
       },
       "terraform": {
         "status": "full",
@@ -3936,7 +3936,7 @@
       },
       "freshness": {
         "status": "stale",
-        "changed_at": "2026-11-25"
+        "changed_at": "2026-11-26"
       },
       "terraform": {
         "status": "full",
